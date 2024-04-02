@@ -1,3 +1,4 @@
+import 'package:analysisrobo/screens/client/exchange.dart';
 import 'package:go_router/go_router.dart';
 
 import '../home.dart';
@@ -19,12 +20,16 @@ final routes = GoRouter(
       builder: (context, state) => const LoaderScreen(),
     ),
     GoRoute(
+      path: '/exchange',
+      builder: (context, state) => const ExchangeScreen(),
+    ),
+    GoRoute(
       path: '/boarding',
       builder: (context, state) => const BoardingScreen(),
     ),
     GoRoute(
       path: '/home',
-      builder: (context, state) =>  HomeScreen(),
+      builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
       path: '/login',

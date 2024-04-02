@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'widgets/menu/downmenu.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -82,49 +85,52 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stock Prediction App'),
+        title: const Text('Stock Prediction App'),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextField(
-              controller: symbolController,
-              decoration: InputDecoration(labelText: 'Symbol (e.g., TCELL.IS)'),
+      body: Column(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                TextField(
+                  controller: symbolController,
+                  decoration: const InputDecoration(
+                      labelText: 'Symbol (e.g., TCELL.IS)'),
+                ),
+                TextField(
+                  controller: startDateController,
+                  decoration: const InputDecoration(
+                      labelText: 'Start Date (YYYY-MM-DD)'),
+                ),
+                TextField(
+                  controller: endDateController,
+                  decoration:
+                      const InputDecoration(labelText: 'End Date (YYYY-MM-DD)'),
+                ),
+                const Gap(16),
+                ElevatedButton(
+                  onPressed: predictStock,
+                  child: const Text('Predict'),
+                ),
+                const Gap(16),
+                isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Expanded(
+                        child: SingleChildScrollView(
+                          child: Text(
+                            predictionResult,
+                          ),
+                        ),
+                      ),
+              ],
             ),
-            TextField(
-              controller: startDateController,
-              decoration: InputDecoration(labelText: 'Start Date (YYYY-MM-DD)'),
-            ),
-            TextField(
-              controller: endDateController,
-              decoration: InputDecoration(labelText: 'End Date (YYYY-MM-DD)'),
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: predictStock,
-              child: Text('Predict'),
-            ),
-            SizedBox(height: 16.0),
-            isLoading
-                ? Center(child: CircularProgressIndicator())
-                : Expanded(
-                    child: SingleChildScrollView(
-                      child: Text(predictionResult),
-                    ),
-                  ),
-          ],
-        ),
+          ),
+          const DownMenu()
+        ],
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    title: 'Stock Prediction App',
-    home: HomeScreen(),
-    debugShowCheckedModeBanner: false,
-  ));
 }
