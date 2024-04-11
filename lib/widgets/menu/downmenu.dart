@@ -17,22 +17,17 @@ class DownMenu extends StatelessWidget {
           DownMenuItem(
             icon: CupertinoIcons.home,
             title: "Home",
-            onTap: () => GoRouter.of(context).pushNamed("/home"),
+            onTap: () => GoRouter.of(context).push("/home"),
           ),
           DownMenuItem(
             icon: CupertinoIcons.money_dollar,
             title: "Exchange",
-            onTap: () => GoRouter.of(context).pushNamed("/exchange"),
+            onTap: () => GoRouter.of(context).push("/exchange"),
           ),
           DownMenuItem(
-            icon: CupertinoIcons.person,
-            title: "Account",
-            onTap: () => GoRouter.of(context).pushNamed("/profile"),
-          ),
-          DownMenuItem(
-            icon: CupertinoIcons.settings,
+            icon: Icons.settings,
             title: "Settings",
-            onTap: () => GoRouter.of(context).pushNamed(""),
+            onTap: () => GoRouter.of(context).push("/settings"),
           ),
         ],
       ),

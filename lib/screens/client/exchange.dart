@@ -10,6 +10,15 @@ class ExchangeScreen extends StatefulWidget {
 class _ExchangeScreenState extends State<ExchangeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Text("Exchange Screen");
+    return Scaffold(
+      appBar: AppBar(),
+      body: const SafeArea(
+        child: Column(
+          children: [
+            Text("Exchange Screen"),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -13,7 +13,7 @@ class LoaderScreen extends StatefulWidget {
 class _LoaderScreenState extends State<LoaderScreen> {
   loadApp() async {
     final storage = Storage();
-    storage.clearStorage();
+
     final isFirstLaunch = await storage.isFirstLaunch();
 
     if (isFirstLaunch) {

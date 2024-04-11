@@ -87,49 +87,51 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Stock Prediction App'),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                TextField(
-                  controller: symbolController,
-                  decoration: const InputDecoration(
-                      labelText: 'Symbol (e.g., TCELL.IS)'),
-                ),
-                TextField(
-                  controller: startDateController,
-                  decoration: const InputDecoration(
-                      labelText: 'Start Date (YYYY-MM-DD)'),
-                ),
-                TextField(
-                  controller: endDateController,
-                  decoration:
-                      const InputDecoration(labelText: 'End Date (YYYY-MM-DD)'),
-                ),
-                const Gap(16),
-                ElevatedButton(
-                  onPressed: predictStock,
-                  child: const Text('Predict'),
-                ),
-                const Gap(16),
-                isLoading
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : Expanded(
-                        child: SingleChildScrollView(
-                          child: Text(
-                            predictionResult,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextField(
+                    controller: symbolController,
+                    decoration: const InputDecoration(
+                        labelText: 'Symbol (e.g., TCELL.IS)'),
+                  ),
+                  TextField(
+                    controller: startDateController,
+                    decoration: const InputDecoration(
+                        labelText: 'Start Date (YYYY-MM-DD)'),
+                  ),
+                  TextField(
+                    controller: endDateController,
+                    decoration: const InputDecoration(
+                        labelText: 'End Date (YYYY-MM-DD)'),
+                  ),
+                  const Gap(16),
+                  ElevatedButton(
+                    onPressed: predictStock,
+                    child: const Text('Predict'),
+                  ),
+                  const Gap(16),
+                  isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : Expanded(
+                          child: SingleChildScrollView(
+                            child: Text(
+                              predictionResult,
+                            ),
                           ),
                         ),
-                      ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const DownMenu()
-        ],
+            const DownMenu()
+          ],
+        ),
       ),
     );
   }

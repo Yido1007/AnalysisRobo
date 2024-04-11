@@ -1,15 +1,16 @@
-import 'package:analysisrobo/screens/client/exchange.dart';
 import 'package:go_router/go_router.dart';
 
 import '../home.dart';
+import '../screens/client/exchange.dart';
 import '../screens/client/login.dart';
 import '../screens/client/profile.dart';
 import '../screens/client/register.dart';
 import '../screens/core/eror.dart';
-import '../screens/core/loader.dart';
+// import '../screens/core/loader.dart';
 import '../screens/static/about.dart';
 import '../screens/static/boarding.dart';
 import '../screens/static/contact.dart';
+import '../screens/static/settings.dart';
 
 // GoRouter configuration
 final routes = GoRouter(
@@ -17,7 +18,11 @@ final routes = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const LoaderScreen(),
+      builder: (context, state) => const SettingsScreen(),
+    ),
+    GoRoute(
+      path: '/settings',
+      builder: (context, state) => const SettingsScreen(),
     ),
     GoRoute(
       path: '/exchange',
