@@ -1,3 +1,4 @@
+import 'package:analysisrobo/screens/core/loader.dart';
 import 'package:go_router/go_router.dart';
 
 import '../home.dart';
@@ -18,7 +19,7 @@ final routes = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const SettingsScreen(),
+      builder: (context, state) => const LoaderScreen(),
     ),
     GoRoute(
       path: '/settings',

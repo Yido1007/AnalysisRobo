@@ -34,21 +34,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
       "title": "Sell your used stuff",
       "description":
           "You can sell your used stuff to millions of users we have in just seconds.",
-    },
-    {
-      "image":
-          "https://img.freepik.com/premium-vector/e-commerce-web-design-concept-with-people-characters_9209-4610.jpg",
-      "title": "Buy all you need.",
-      "description":
-          "You can order what you want in just seconds using our awesome application.",
-    },
-    {
-      "image":
-          "https://img.freepik.com/free-vector/ecommerce-campaign-concept-illustration_114360-8432.jpg",
-      "title": "Sell your used stuff",
-      "description":
-          "You can sell your used stuff to millions of users we have in just seconds.",
-    },
+    }
   ];
 
   int page = 0;
@@ -64,7 +50,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
               onTap: () async {
                 final storage = Storage();
                 await storage.firstLauched();
-                GoRouter.of(context).replace("/home");
+                GoRouter.of(context).replace("/login");
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
