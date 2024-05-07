@@ -3,11 +3,9 @@ import 'package:go_router/go_router.dart';
 
 import '../screens/home.dart';
 import '../screens/client/exchange.dart';
-import '../screens/client/login.dart';
 import '../screens/client/profile.dart';
-import '../screens/client/register.dart';
 import '../screens/core/eror.dart';
-// import '../screens/core/loader.dart';
+
 import '../screens/static/about.dart';
 import '../screens/static/boarding.dart';
 import '../screens/static/contact.dart';
@@ -38,16 +36,8 @@ final routes = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      path: '/login',
-      builder: (context, state) => const LoginScreen(),
-    ),
-    GoRoute(
       path: '/profile',
       builder: (context, state) => const ProfileScreen(),
-    ),
-    GoRoute(
-      path: '/register',
-      builder: (context, state) => const RegisterScreen(),
     ),
     GoRoute(
       path: '/about',
