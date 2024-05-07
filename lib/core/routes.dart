@@ -1,7 +1,7 @@
 import 'package:analysisrobo/screens/core/loader.dart';
 import 'package:go_router/go_router.dart';
 
-import '../home.dart';
+import '../screens/home.dart';
 import '../screens/client/exchange.dart';
 import '../screens/client/login.dart';
 import '../screens/client/profile.dart';

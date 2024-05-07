@@ -50,7 +50,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
               onTap: () async {
                 final storage = Storage();
                 await storage.firstLauched();
-                GoRouter.of(context).replace("/login");
+                GoRouter.of(context).replace("/home");
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),

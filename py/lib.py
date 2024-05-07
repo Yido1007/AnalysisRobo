@@ -59,15 +59,6 @@ def doAnalysis(symbol = "TCELL.IS", start_date = "2022-01-01", end_date = "2023-
     plt.xlabel('Günler')
     plt.ylabel('Kapanış Fiyatı')
     plt.show()
-
-    plt.figure(figsize=(8, 4))
-    plt.plot(predictions, label='Tahminler', linewidth=1.5)
-    plt.plot(y_test, label='Gerçek Değerler', linewidth=1.5)
-    plt.legend()
-    plt.title('KOÇ Hisse Senedi Fiyat Tahmini')
-    plt.xlabel('Günler')
-    plt.ylabel('Kapanış Fiyatı')
-    plt.show()
     fileName = 'temp/'+ uuid.uuid4()+'.png'
     plt.savefig(fileName)
     return fileName

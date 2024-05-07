@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'widgets/menu/downmenu.dart';
+import '../widgets/menu/downmenu.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
