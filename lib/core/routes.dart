@@ -1,3 +1,4 @@
+import 'package:analysisrobo/screens/client/languages.dart';
 import 'package:analysisrobo/screens/client/notifications.dart';
 import 'package:analysisrobo/screens/client/themes.dart';
 import 'package:analysisrobo/screens/core/loader.dart';
@@ -56,6 +57,10 @@ final routes = GoRouter(
     GoRoute(
       path: '/notification',
       builder: (context, state) => const NotificationScreen(),
+    ),
+    GoRoute(
+      path: '/language',
+      builder: (context, state) => const LanguageScreen(),
     ),
   ],
 );
