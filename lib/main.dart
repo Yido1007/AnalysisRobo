@@ -1,4 +1,6 @@
+import 'package:analysisrobo/bloc/client/client_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/routes.dart';
 
@@ -11,9 +13,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: routes,
+    return BlocProvider(
+      create: (context) => ClientCubit(
+        ClientState(language: "en", darkMode: false),
+      ),
+      child: BlocBuilder<ClientCubit, ClientState>(builder: (context, state) {
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          routerConfig: routes,
+        );
+      }),
     );
   }
 }

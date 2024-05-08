@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 import '../../core/storage.dart';
-import '../../widgets/page/boardingitem.dart';
+import '../../widgets/boardingitem.dart';
 
 class BoardingScreen extends StatefulWidget {
   const BoardingScreen({super.key});
@@ -15,25 +15,20 @@ class BoardingScreen extends StatefulWidget {
 class _BoardingScreenState extends State<BoardingScreen> {
   final boardingData = [
     {
-      "image":
-          "https://img.freepik.com/premium-vector/e-commerce-web-design-concept-with-people-characters_9209-4610.jpg",
+      "image": "",
       "title": "Buy all you need.",
-      "description":
-          "You can order what you want in just seconds using our awesome application.",
+      "description": "You can order what you want in just seconds using our awesome application.",
     },
     {
-      "image":
-          "https://img.freepik.com/free-vector/ecommerce-internet-shopping-promotion-campaign_335657-2977.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699747200&semt=ais",
+      "image": "",
       "title": "Second Hand Products",
       "description":
           "You can buy second hand products to save your money and pay less withing millions of sellers.",
     },
     {
-      "image":
-          "https://img.freepik.com/free-vector/ecommerce-campaign-concept-illustration_114360-8432.jpg",
+      "image": "",
       "title": "Sell your used stuff",
-      "description":
-          "You can sell your used stuff to millions of users we have in just seconds.",
+      "description": "You can sell your used stuff to millions of users we have in just seconds.",
     }
   ];
 
@@ -50,13 +45,12 @@ class _BoardingScreenState extends State<BoardingScreen> {
               onTap: () async {
                 final storage = Storage();
                 await storage.firstLauched();
+                // ignore: use_build_context_synchronously
                 GoRouter.of(context).replace("/home");
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: page == boardingData.length
-                    ? const Text("finish")
-                    : const Text("skip"),
+                child: page == boardingData.length ? const Text("finish") : const Text("skip"),
               ),
             ),
           ),
@@ -86,9 +80,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
             scrollDirection: Axis.horizontal,
             itemCount: boardingData.length,
             itemBuilder: (context, index) => Icon(
-              page == index
-                  ? CupertinoIcons.circle_filled
-                  : CupertinoIcons.circle,
+              page == index ? CupertinoIcons.circle_filled : CupertinoIcons.circle,
             ),
           ),
         ),

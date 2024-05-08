@@ -1,8 +1,11 @@
-import 'package:analysisrobo/widgets/menu/downmenu.dart';
+import 'package:analysisrobo/bloc/client/client_cubit.dart';
+import 'package:analysisrobo/widgets/downmenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../widgets/page/settingsitem.dart';
+import '../../widgets/settingsitem.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -12,6 +15,14 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  late ClientCubit clientCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    clientCubit = context.read<ClientCubit>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +39,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   SettingsItem(
                     icon: CupertinoIcons.person,
                     title: "Account",
-                    onTap: () => "",
+                    onTap: () => GoRouter.of(context).push("/profile"),
                   ),
                   const Divider(
                     thickness: 1,
@@ -38,7 +49,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   SettingsItem(
                     icon: CupertinoIcons.bell,
                     title: "Notifications",
-                    onTap: () => "",
+                    onTap: () => GoRouter.of(context).push("/notification"),
                   ),
                   const Divider(
                     thickness: 1,
@@ -48,7 +59,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   SettingsItem(
                     icon: CupertinoIcons.eye,
                     title: "Appearance",
-                    onTap: () => "",
+                    onTap: () => GoRouter.of(context).push("/theme"),
                   ),
                   const Divider(
                     thickness: 1,
@@ -58,7 +69,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   SettingsItem(
                     icon: Icons.headphones_outlined,
                     title: "Help/Support",
-                    onTap: () => "",
+                    onTap: () => GoRouter.of(context).push("/"),
                   ),
                   const Divider(
                     thickness: 1,
@@ -68,18 +79,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   SettingsItem(
                     icon: CupertinoIcons.question_circle,
                     title: "About",
-                    onTap: () => "",
+                    onTap: () => GoRouter.of(context).push("/about"),
                   ),
                   const Divider(
                     thickness: 1,
                     indent: 120,
                     endIndent: 120,
                   ),
-                  LogoutItem(
-                    icon: Icons.logout_sharp,
-                    title: "Logout",
-                    onTap: () => "",
-                  )
                 ],
               ),
             ),

@@ -22,10 +22,10 @@ class _LoaderScreenState extends State<LoaderScreen> {
     final firstLaunch = await storage.isFirstLaunch();
 
     if (firstLaunch) {
-      // cihazin gece gunduz moduna erismek
+      // access to device dark theme
       const darkMode = ThemeMode.system == ThemeMode.dark;
 
-      // cihazin varsayilan diline erismek
+      // access to device language
 
       await storage.setConfig(
           language: getDeviceLanguage(), darkMode: darkMode);

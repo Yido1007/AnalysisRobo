@@ -1,3 +1,5 @@
+import 'package:analysisrobo/screens/client/notifications.dart';
+import 'package:analysisrobo/screens/client/themes.dart';
 import 'package:analysisrobo/screens/core/loader.dart';
 import 'package:go_router/go_router.dart';
 
@@ -46,6 +48,14 @@ final routes = GoRouter(
     GoRoute(
       path: '/contact',
       builder: (context, state) => const ContactScreen(),
+    ),
+    GoRoute(
+      path: '/theme',
+      builder: (context, state) => const ThemeScreen(),
+    ),
+    GoRoute(
+      path: '/notification',
+      builder: (context, state) => const NotificationScreen(),
     ),
   ],
 );
