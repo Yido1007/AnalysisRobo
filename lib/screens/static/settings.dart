@@ -81,7 +81,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     SettingsItem(
                       icon: Icons.headphones_outlined,
                       title: AppLocalizations.of(context).getTranslate("help"),
-                      onTap: () => GoRouter.of(context).push("/"),
+                      onTap: () => GoRouter.of(context).push("/help"),
                     ),
                     const Divider(
                       thickness: 1,

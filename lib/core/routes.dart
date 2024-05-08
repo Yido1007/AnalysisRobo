@@ -11,7 +11,7 @@ import '../screens/core/eror.dart';
 
 import '../screens/static/about.dart';
 import '../screens/static/boarding.dart';
-import '../screens/static/contact.dart';
+import '../screens/static/help.dart';
 import '../screens/static/settings.dart';
 
 // GoRouter configuration
@@ -47,8 +47,8 @@ final routes = GoRouter(
       builder: (context, state) => const AboutScreen(),
     ),
     GoRoute(
-      path: '/contact',
-      builder: (context, state) => const ContactScreen(),
+      path: '/help',
+      builder: (context, state) => const HelpScreen(),
     ),
     GoRoute(
       path: '/theme',

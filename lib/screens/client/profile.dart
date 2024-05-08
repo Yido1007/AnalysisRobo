@@ -1,4 +1,8 @@
+import 'package:analysisrobo/core/localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../bloc/client/client_cubit.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -8,13 +12,25 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class ProfileScreenState extends State<ProfileScreen> {
+  late ClientCubit clientCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    clientCubit = context.read<ClientCubit>();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: const SafeArea(
-        child: Text("ProfileScreen"),
-      ),
-    );
+    return Builder(builder: (context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            AppLocalizations.of(context).getTranslate("account"),
+          ),
+          centerTitle: true,
+        ),
+      );
+    });
   }
 }

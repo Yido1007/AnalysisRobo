@@ -4,14 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/client/client_cubit.dart';
 
-class AboutScreen extends StatefulWidget {
-  const AboutScreen({super.key});
+class HelpScreen extends StatefulWidget {
+  const HelpScreen({super.key});
 
   @override
-  State<AboutScreen> createState() => _AboutScreenState();
+  State<HelpScreen> createState() => _HelpScreenState();
 }
 
-class _AboutScreenState extends State<AboutScreen> {
+class _HelpScreenState extends State<HelpScreen> {
   late ClientCubit clientCubit;
 
   @override
@@ -26,10 +26,11 @@ class _AboutScreenState extends State<AboutScreen> {
       return Scaffold(
         appBar: AppBar(
           title: Text(
-            AppLocalizations.of(context).getTranslate("about"),
+            AppLocalizations.of(context).getTranslate("help"),
           ),
           centerTitle: true,
         ),
+        body: Container(),
       );
     });
   }

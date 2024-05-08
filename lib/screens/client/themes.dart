@@ -1,3 +1,4 @@
+import 'package:analysisrobo/core/localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,7 +25,10 @@ class _ThemeScreenState extends State<ThemeScreen> {
     return BlocBuilder<ClientCubit, ClientState>(builder: (context, state) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text(""),
+          title: Text(
+            AppLocalizations.of(context).getTranslate("appearance"),
+          ),
+          centerTitle: true,
         ),
         body: SafeArea(
           child: SwitchListTile(
