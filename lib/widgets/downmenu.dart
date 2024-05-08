@@ -1,3 +1,4 @@
+import 'package:analysisrobo/core/localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -16,17 +17,17 @@ class DownMenu extends StatelessWidget {
         children: [
           DownMenuItem(
             icon: CupertinoIcons.home,
-            title: "Home",
+            title: AppLocalizations.of(context).getTranslate("home"),
             onTap: () => GoRouter.of(context).push("/home"),
           ),
           DownMenuItem(
             icon: CupertinoIcons.money_dollar,
-            title: "Exchange",
+            title: AppLocalizations.of(context).getTranslate("exchange"),
             onTap: () => GoRouter.of(context).push("/exchange"),
           ),
           DownMenuItem(
             icon: Icons.settings,
-            title: "Settings",
+            title: AppLocalizations.of(context).getTranslate("settings"),
             onTap: () => GoRouter.of(context).push("/settings"),
           ),
         ],

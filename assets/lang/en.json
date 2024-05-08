@@ -1,3 +1,15 @@
 {
-    "":""
+    "home":"Home",
+    "settings":"Settings",
+    "exchange":"Exchange",
+    "predict":"Predict",
+    "account":"Account",
+    "notifications":"Notifications",
+    "appearance":"Appearance",
+    "help":"Help/Support",
+    "about":"About",
+    "language":"Language",
+    "start-date":"Start Date YYYY-MM-DD",
+    "end-date":"End Date YYYY-MM-DD",
+    "symbol":"Symbol (e.g , TCELL.IS)"
 }

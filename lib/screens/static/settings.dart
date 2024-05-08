@@ -1,4 +1,5 @@
 import 'package:analysisrobo/bloc/client/client_cubit.dart';
+import 'package:analysisrobo/core/localizations.dart';
 import 'package:analysisrobo/widgets/downmenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   children: [
                     SettingsItem(
                       icon: CupertinoIcons.person,
-                      title: "Account",
+                      title: AppLocalizations.of(context).getTranslate("account"),
                       onTap: () => GoRouter.of(context).push("/profile"),
                     ),
                     const Divider(
@@ -49,7 +50,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     SettingsItem(
                       icon: CupertinoIcons.bell,
-                      title: "Notifications",
+                      title: AppLocalizations.of(context).getTranslate("notifications"),
                       onTap: () => GoRouter.of(context).push("/notification"),
                     ),
                     const Divider(
@@ -59,7 +60,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     SettingsItem(
                       icon: CupertinoIcons.eye,
-                      title: "Appearance",
+                      title: AppLocalizations.of(context).getTranslate("appearance"),
                       onTap: () => GoRouter.of(context).push("/theme"),
                     ),
                     const Divider(
@@ -68,8 +69,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       endIndent: 120,
                     ),
                     SettingsItem(
+                      icon: Icons.language_outlined,
+                      title: AppLocalizations.of(context).getTranslate("language"),
+                      onTap: () => GoRouter.of(context).push("/language"),
+                    ),
+                    const Divider(
+                      thickness: 1,
+                      indent: 120,
+                      endIndent: 120,
+                    ),
+                    SettingsItem(
                       icon: Icons.headphones_outlined,
-                      title: "Help/Support",
+                      title: AppLocalizations.of(context).getTranslate("help"),
                       onTap: () => GoRouter.of(context).push("/"),
                     ),
                     const Divider(
@@ -79,20 +90,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     SettingsItem(
                       icon: CupertinoIcons.question_circle,
-                      title: "About",
+                      title: AppLocalizations.of(context).getTranslate("about"),
                       onTap: () => GoRouter.of(context).push("/about"),
                     ),
-                    const Divider(
-                      thickness: 1,
-                      indent: 120,
-                      endIndent: 120,
-                    ),
-                    SettingsItem(
-                      icon: CupertinoIcons.question_circle,
-                      title: "Language",
-                      onTap: () => GoRouter.of(context).push("/language"),
-                    ),
-
                   ],
                 ),
               ),

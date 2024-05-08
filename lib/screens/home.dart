@@ -1,3 +1,4 @@
+import 'package:analysisrobo/core/localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:http/http.dart' as http;
@@ -30,8 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
       final String startDate = startDateController.text;
       final String endDate = endDateController.text;
 
-      final response = await http.get(Uri.parse(
-          'https://api-v2.investing.com/instruments/StocksData?pair_ID=$symbol'));
+      final response = await http
+          .get(Uri.parse('https://api-v2.investing.com/instruments/StocksData?pair_ID=$symbol'));
 
       if (response.statusCode == 200) {
         // Parse response data
@@ -57,8 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           final predictions = predictionData['predictions'];
 
           setState(() {
-            predictionResult =
-                'Predictions for $symbolName ($companyName):\n\n$predictions';
+            predictionResult = 'Predictions for $symbolName ($companyName):\n\n$predictions';
             isLoading = false;
           });
         } else {
@@ -85,7 +85,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Stock Prediction App'),
+        title: const Text('Analysis Robo'),
+        centerTitle: true,
       ),
       body: SafeArea(
         child: Column(
@@ -96,23 +97,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   TextField(
                     controller: symbolController,
-                    decoration: const InputDecoration(
-                        labelText: 'Symbol (e.g., TCELL.IS)'),
+                    decoration: const InputDecoration(labelText: 'Symbol (e.g., TCELL.IS)'),
                   ),
                   TextField(
                     controller: startDateController,
-                    decoration: const InputDecoration(
-                        labelText: 'Start Date (YYYY-MM-DD)'),
+                    decoration: const InputDecoration(labelText: 'Start Date (YYYY-MM-DD)'),
                   ),
                   TextField(
                     controller: endDateController,
-                    decoration: const InputDecoration(
-                        labelText: 'End Date (YYYY-MM-DD)'),
+                    decoration: const InputDecoration(labelText: 'End Date (YYYY-MM-DD)'),
                   ),
                   const Gap(16),
                   ElevatedButton(
                     onPressed: predictStock,
-                    child: const Text('Predict'),
+                    child: Text(AppLocalizations.of(context).getTranslate("predict")),
                   ),
                   const Gap(16),
                   isLoading
