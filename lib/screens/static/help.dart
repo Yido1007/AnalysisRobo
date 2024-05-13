@@ -18,15 +18,15 @@ class HelpScreen extends StatefulWidget {
 
 class _HelpScreenState extends State<HelpScreen> {
   bool loading = true;
-  List<dynamic> petData = [];
+  List<dynamic> helpData = [];
   TextEditingController searchController = TextEditingController();
 
   List<Map<String, dynamic>> responses = [];
 
   loadData() async {
-    final data = await rootBundle.loadString('petbot.json');
+    final data = await rootBundle.loadString('helper.json');
     setState(() {
-      petData = jsonDecode(data);
+      helpData = jsonDecode(data);
       loading = false;
     });
   }
@@ -41,7 +41,7 @@ class _HelpScreenState extends State<HelpScreen> {
 
     var searchWords = searchController.text.split(' ');
 
-    for (var element in petData) {
+    for (var element in helpData) {
       var p = element["user_input"].cast<String>();
       var p2 = element["required_words"].cast<String>();
 

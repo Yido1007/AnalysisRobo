@@ -7,14 +7,15 @@ class AppLocalizations {
   late Locale locale;
   late Map<String, String> _valueText;
 
-  static const List<String> _supportedLanguages = [
-    'en',
-    'tr',
-  ];
+  static const List<String> _supportedLanguages = ['en', 'tr', "es", "fr", "de", "it"];
 
   static const Map<String, String> _supportedLanguages2 = {
     'en': "English",
     'tr': "Türkçe",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "it": "Italiano"
   };
 
   AppLocalizations(this.locale);
@@ -28,17 +29,13 @@ class AppLocalizations {
   }
 
   static String getSupportedLocaleCode(String locale) {
-    return _supportedLanguages
-        .where((element) => locale.contains(element))
-        .first;
+    return _supportedLanguages.where((element) => locale.contains(element)).first;
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = AppLocalizationsDelegate();
 
   Future loadTranslateFile() async {
-    String langFile =
-        await rootBundle.loadString('assets/lang/${locale.languageCode}.json');
+    String langFile = await rootBundle.loadString('assets/lang/${locale.languageCode}.json');
 
     Map<String, dynamic> json = jsonDecode(langFile);
     _valueText = json.map((key, value) => MapEntry(key, value.toString()));
@@ -58,10 +55,7 @@ class AppLocalizations {
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
-  static const List<String> _supportedLanguages = [
-    'en',
-    'tr',
-  ];
+  static const List<String> _supportedLanguages = ['en', 'tr', "es", "fr", "de", "it"];
 
   const AppLocalizationsDelegate();
 
@@ -81,8 +75,7 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   bool shouldReload(covariant AppLocalizationsDelegate old) => false;
 }
 
-Locale? localeResolutionCallback(
-    Locale? deviceLocale, Iterable<Locale> supportedLocales) {
+Locale? localeResolutionCallback(Locale? deviceLocale, Iterable<Locale> supportedLocales) {
   // return deviceLocale != null &&
   //         ['en', 'ar', 'tr', 'fa', 'fr', 'es']
   //             .contains(deviceLocale.languageCode)

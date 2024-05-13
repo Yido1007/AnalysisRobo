@@ -1,0 +1,15 @@
+{
+    "home":"Startseite",
+    "settings":"Einstellungen",
+    "exchange":"Aktienmarkt",
+    "predict":"Vorhersage",
+    "account":"Konto",
+    "notifications":"Benachrichtigungen",
+    "appearance":"Anschein ",
+    "help":"Hilfe/Befürworten ",
+    "about":"Über uns",
+    "language":"Sprache",
+    "start-date":"Anfangstermin YYYY-MM-DD",
+    "end-date":"Endtermin YYYY-MM-DD",
+    "symbol":"Symbol (beispiel, TCELL.IS)"
+}

@@ -39,4 +39,4 @@ flutter:
     - assets/images/
     - assets/lang/
     - assets/icons/
-    - assets/petbot.json
+    - assets/helper.json

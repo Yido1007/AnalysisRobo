@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import '../../bloc/client/client_cubit.dart';
 import '../../core/localizations.dart';
 
@@ -33,12 +34,13 @@ class _LanguageScreenState extends State<LanguageScreen> {
           child: Column(
             children: [
               // prints the current status
-              Text(
-                  "${AppLocalizations.of(context).getTranslate("language")}: ${clientCubit.state.language}"),
+              // Text(
+              //     "${AppLocalizations.of(context).getTranslate("language")}: ${clientCubit.state.language}"),
+              const Gap(25),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  // to use Turkish
+                  // to use Tr
                   InkWell(
                     child: Image.asset(
                       "assets/icons/turkey.png",
@@ -54,10 +56,10 @@ class _LanguageScreenState extends State<LanguageScreen> {
                             );
                     },
                   ),
-                  // to use English
+                  // to use En
                   InkWell(
                     child: Image.asset(
-                      "assets/icons/usa.png",
+                      "assets/icons/england.png",
                       width: 80,
                     ),
                     onTap: () {
@@ -72,6 +74,82 @@ class _LanguageScreenState extends State<LanguageScreen> {
                   ),
                 ],
               ),
+              const Gap(25),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // to use Esp
+                  InkWell(
+                    child: Image.asset(
+                      "assets/icons/spain.png",
+                      width: 80,
+                    ),
+                    onTap: () {
+                      clientCubit.state.language == "es"
+                          ? null
+                          : (
+                              {
+                                clientCubit.changeLanguage(language: "es"),
+                              },
+                            );
+                    },
+                  ),
+                  // to use Fra
+                  InkWell(
+                    child: Image.asset(
+                      "assets/icons/france.png",
+                      width: 80,
+                    ),
+                    onTap: () {
+                      clientCubit.state.language == "fr"
+                          ? null
+                          : (
+                              {
+                                clientCubit.changeLanguage(language: "fr"),
+                              },
+                            );
+                    },
+                  ),
+                ],
+              ),
+              const Gap(25),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // to use De
+                  InkWell(
+                    child: Image.asset(
+                      "assets/icons/germany.png",
+                      width: 80,
+                    ),
+                    onTap: () {
+                      clientCubit.state.language == "de"
+                          ? null
+                          : (
+                              {
+                                clientCubit.changeLanguage(language: "de"),
+                              },
+                            );
+                    },
+                  ),
+                  // to use It
+                  InkWell(
+                    child: Image.asset(
+                      "assets/icons/italy.png",
+                      width: 80,
+                    ),
+                    onTap: () {
+                      clientCubit.state.language == "it"
+                          ? null
+                          : (
+                              {
+                                clientCubit.changeLanguage(language: "it"),
+                              },
+                            );
+                    },
+                  ),
+                ],
+              )
             ],
           ),
         ),

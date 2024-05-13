@@ -1,0 +1,15 @@
+{
+    "home":"Página de Inicio",
+    "settings":"Ajustes",
+    "exchange":"Intercambio",
+    "predict":"Adivinar",
+    "account":"Cuenta",
+    "notifications":"Notificaciones",
+    "appearance":"Apariencia",
+    "help":"Ayudar/Apoyo",
+    "about":"Sobre Nosotros",
+    "language":"Idioma",
+    "start-date":"Fecha de Inicio YYYY-MM-DD",
+    "end-date":"Fecha de Finalización YYYY-MM-DD",
+    "symbol":"Símbolo (ejemplo, TCELL.IS)"
+}
