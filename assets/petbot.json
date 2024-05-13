@@ -1,0 +1,14 @@
+[
+  {
+   "response_type":"Greeting",
+   "user_input": ["hello","hi","hey"],
+   "bot_response":"Hey there!",
+   "required_words": []
+  },
+  {
+   "response_type":"Greeting",
+   "user_input": ["see","you"],
+   "bot_response":"See you later!",
+   "required_words": ["see","you"]
+  }
+]

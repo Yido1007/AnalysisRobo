@@ -18,17 +18,17 @@ class DownMenu extends StatelessWidget {
           DownMenuItem(
             icon: CupertinoIcons.home,
             title: AppLocalizations.of(context).getTranslate("home"),
-            onTap: () => GoRouter.of(context).push("/home"),
+            onTap: () => GoRouter.of(context).go("/home"),
           ),
           DownMenuItem(
             icon: CupertinoIcons.money_dollar,
             title: AppLocalizations.of(context).getTranslate("exchange"),
-            onTap: () => GoRouter.of(context).push("/exchange"),
+            onTap: () => GoRouter.of(context).go("/exchange"),
           ),
           DownMenuItem(
             icon: Icons.settings,
             title: AppLocalizations.of(context).getTranslate("settings"),
-            onTap: () => GoRouter.of(context).push("/settings"),
+            onTap: () => GoRouter.of(context).go("/settings"),
           ),
         ],
       ),

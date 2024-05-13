@@ -31,8 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final String startDate = startDateController.text;
       final String endDate = endDateController.text;
 
-      final response = await http
-          .get(Uri.parse('https://api-v2.investing.com/instruments/StocksData?pair_ID=$symbol'));
+      final response = await http.get(Uri.parse('https://finance.yahoo.com/quote/$symbol/history'));
 
       if (response.statusCode == 200) {
         // Parse response data
