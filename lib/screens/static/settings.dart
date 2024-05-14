@@ -45,8 +45,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     const Divider(
                       thickness: 1,
-                      indent: 120,
-                      endIndent: 120,
+                      indent: 90,
+                      endIndent: 90,
                     ),
                     SettingsItem(
                       icon: CupertinoIcons.bell,
@@ -55,8 +55,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     const Divider(
                       thickness: 1,
-                      indent: 120,
-                      endIndent: 120,
+                      indent: 90,
+                      endIndent: 90,
                     ),
                     SettingsItem(
                       icon: CupertinoIcons.eye,
@@ -65,8 +65,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     const Divider(
                       thickness: 1,
-                      indent: 120,
-                      endIndent: 120,
+                      indent: 90,
+                      endIndent: 90,
                     ),
                     SettingsItem(
                       icon: Icons.language_outlined,
@@ -75,8 +75,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     const Divider(
                       thickness: 1,
-                      indent: 120,
-                      endIndent: 120,
+                      indent: 90,
+                      endIndent: 90,
                     ),
                     SettingsItem(
                       icon: Icons.headphones_outlined,
@@ -85,13 +85,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     const Divider(
                       thickness: 1,
-                      indent: 120,
-                      endIndent: 120,
+                      indent: 90,
+                      endIndent: 90,
                     ),
                     SettingsItem(
                       icon: CupertinoIcons.question_circle,
                       title: AppLocalizations.of(context).getTranslate("about"),
                       onTap: () => GoRouter.of(context).push("/about"),
+                    ),
+                    const Divider(
+                      thickness: 1,
+                      indent: 90,
+                      endIndent: 90,
                     ),
                   ],
                 ),

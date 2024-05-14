@@ -1,6 +1,6 @@
 import 'package:analysisrobo/screens/client/languages.dart';
 import 'package:analysisrobo/screens/client/notifications.dart';
-import 'package:analysisrobo/screens/client/themes.dart';
+import 'package:analysisrobo/screens/core/themes.dart';
 import 'package:analysisrobo/screens/core/loader.dart';
 import 'package:go_router/go_router.dart';
 

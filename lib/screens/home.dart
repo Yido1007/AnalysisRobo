@@ -94,22 +94,37 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  TextField(
-                    controller: symbolController,
-                    decoration: const InputDecoration(labelText: 'Symbol (e.g., TCELL.IS)'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: symbolController,
+                      decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context).getTranslate("symbol")),
+                    ),
                   ),
-                  TextField(
-                    controller: startDateController,
-                    decoration: const InputDecoration(labelText: 'Start Date (YYYY-MM-DD)'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: startDateController,
+                      decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context).getTranslate("start-date")),
+                    ),
                   ),
-                  TextField(
-                    controller: endDateController,
-                    decoration: const InputDecoration(labelText: 'End Date (YYYY-MM-DD)'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: endDateController,
+                      decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context).getTranslate("end-date")),
+                    ),
                   ),
                   const Gap(16),
-                  ElevatedButton(
-                    onPressed: predictStock,
-                    child: Text(AppLocalizations.of(context).getTranslate("predict")),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: predictStock,
+                      child: Text(AppLocalizations.of(context).getTranslate("predict")),
+                    ),
                   ),
                   const Gap(16),
                   isLoading

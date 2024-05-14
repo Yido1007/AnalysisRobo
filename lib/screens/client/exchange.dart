@@ -18,7 +18,6 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
     super.initState();
     clientCubit = context.read<ClientCubit>();
   }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ClientCubit, ClientState>(builder: (context, state) {

@@ -21,7 +21,7 @@ class SettingsItem extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
