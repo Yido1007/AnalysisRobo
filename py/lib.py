@@ -58,9 +58,9 @@ def doAnalysis(symbol = "TCELL.IS", start_date = "2022-01-01", end_date = "2023-
     plt.title('TCELL.IS Hisse Senedi Fiyat Tahmini')
     plt.xlabel('Günler')
     plt.ylabel('Kapanış Fiyatı')
-    plt.show()
-    fileName = 'temp/'+ uuid.uuid4()+'.png'
-    plt.savefig(fileName)
-    return fileName
+    #plt.show()
+    fileName = str(uuid.uuid4()) +'.png'
+    plt.savefig('./static/'+ fileName)
+    return "http://localhost:5000/static/" + fileName
 
     """Örneğin, Türkiye'de bulunan Turkcell hisse senedi için TCELL.IS sembolünü, Koç Holding için KCHOL.IS sembolünü, Garanti Bankası için GARAN.IS sembolünü kullanabilirsiniz. Bu semboller, Yahoo Finance tarafından tanımlanan standart sembollerdir."""
