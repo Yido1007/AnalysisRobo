@@ -40,9 +40,23 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                   itemBuilder: (context, index) {
                     final coin = coinProvider.coins[index];
                     return ListTile(
+                      leading: Image.network(coin.image, width: 40, height: 40),
                       title: Text(coin.name),
                       subtitle: Text(coin.symbol),
-                      trailing: Text('\$${coin.price.toStringAsFixed(2)}'),
+                      trailing: Container(
+                          padding: const EdgeInsets.all(12),
+                          width: 90,
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(20),
+                              )),
+                          child: Center(
+                            child: Text(
+                              '\$${coin.price.toStringAsFixed(2)}',
+                              style: const TextStyle(fontSize: 12),
+                            ),
+                          )),
                     );
                   },
                 ),
