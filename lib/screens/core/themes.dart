@@ -1,8 +1,11 @@
-import 'package:analysisrobo/core/localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../bloc/client/client_cubit.dart';
+import '../../core/localizations.dart';
 
 class ThemeScreen extends StatefulWidget {
   const ThemeScreen({super.key});
@@ -12,36 +15,127 @@ class ThemeScreen extends StatefulWidget {
 }
 
 class _ThemeScreenState extends State<ThemeScreen> {
-  late ClientCubit clientCubit;
+  bool isDarkMode =
+      ThemeMode.system == ThemeMode.light ? false : true; // Varsayılan olarak koyu moda başlayalım
+  late SharedPreferences prefs; // SharedPreferences nesnesi
+  late final ClientCubit clientCubit;
 
   @override
   void initState() {
-    super.initState();
     clientCubit = context.read<ClientCubit>();
+    super.initState();
+
+    _loadSelectedMode();
+  }
+
+  // Kayıtlı mod bilgisini yükleyen fonksiyon
+  _loadSelectedMode() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isDarkMode = clientCubit.state.darkMode; // Kayıtlı mod bilgisini yükle, yoksa false kullan
+    });
+  }
+
+  // Seçilen mod bilgisini kaydeden fonksiyon
+  _saveSelectedMode(bool darkMode) async {
+    await prefs.setBool('darkMode', darkMode); // Seçilen dil bilgisini kaydet
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ClientCubit, ClientState>(builder: (context, state) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            AppLocalizations.of(context).getTranslate("appearance"),
-          ),
-          centerTitle: true,
+    return Scaffold(
+      appBar: AppBar(),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 30.0, top: 10.0),
+              child: Text(
+                AppLocalizations.of(context).getTranslate("appearance"),
+                style: const TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).secondaryHeaderColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                height: 350,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      themeModeItem(
+                        context,
+                        "light",
+                        !isDarkMode, // Ters çevirdik
+                        () {
+                          setState(() {
+                            isDarkMode = false;
+                            _saveSelectedMode(false);
+                            context.read<ClientCubit>().changeDarkMode(darkMode: false);
+                          });
+                        },
+                        "assets/images/ThemeScreen/light_mode_example.jpg",
+                      ),
+                      themeModeItem(
+                        context,
+                        "dark",
+                        isDarkMode, // Değişiklik yok
+                        () {
+                          setState(() {
+                            isDarkMode = true; // Koyu moda geçiş
+                            _saveSelectedMode(true);
+                            clientCubit.changeDarkMode(darkMode: true);
+                          });
+                        },
+                        "assets/images/ThemeScreen/dark_mode_example.jpg",
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
         ),
-        body: SafeArea(
-          child: SwitchListTile(
-            value: clientCubit.state.darkMode,
-            onChanged: (value) {
-              clientCubit.changeDarkMode(darkMode: value);
-            },
-            secondary:
-                clientCubit.state.darkMode ? const Icon(Icons.sunny) : const Icon(Icons.nightlight),
-            title: const Text("dark_mode"),
+      ),
+    );
+  }
+
+  Widget themeModeItem(BuildContext context, String title, bool isChecked,
+      void Function()? onChanged, String image) {
+    return GestureDetector(
+      onTap: onChanged, // Resme tıklandığında onChanged fonksiyonunu çağır
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            height: 250,
+            width: 125,
+            child: Image.asset(
+              image,
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-      );
-    });
+          const Gap(5),
+          Text(
+            AppLocalizations.of(context).getTranslate(title),
+          ),
+          const Gap(5),
+          Checkbox(
+            value: isChecked,
+            onChanged: onChanged != null ? (bool? value) => onChanged() : null,
+          ),
+        ],
+      ),
+    );
   }
 }

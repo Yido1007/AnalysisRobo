@@ -11,6 +11,17 @@
     "language":"Language",
     "start-date":"Date de Début YYYY-MM-DD",
     "end-date":"Date de Fin YYYY-MM-DD",
-    "symbol":"Symbole (Exemple, TCELL.IS)"
+    "symbol":"Symbole (Exemple, TCELL.IS)",
+    "location_permissions":"Localisation Permission",
+    "notification_permissions":"Autorisation de Notification",
+    "give_permission":"Donner la Permission",
+    "authorized":"Autorisé",
+    "blocked":"Bloqué",
+    "restricted":"Limité",
+    "limited":"Limité",
+    "completely_rejected":"Complètement rejeté",
+    "temporary":"Temporaire",
+    "denied":"Refusé"
+
 
 }

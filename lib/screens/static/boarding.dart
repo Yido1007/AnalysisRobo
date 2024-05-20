@@ -2,11 +2,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 import '../../core/localizations.dart';
 import '../../core/storage.dart';
+import '../../widgets/boardingitem.dart';
 
 class BoardingScreen extends StatefulWidget {
   const BoardingScreen({Key? key});
@@ -36,7 +36,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
           },
           children: [
             BoardingItem(
-                image: AssetImage('assets/images/boarding/boarding-1.jpg'),
+                image: AssetImage('assets/images/boarding-1.webp'),
                 title: AppLocalizations.of(context).getTranslate("boarding_title-1"),
                 description: AppLocalizations.of(context).getTranslate("boarding_description-1")),
             BoardingItem(
@@ -84,51 +84,11 @@ class _BoardingScreenState extends State<BoardingScreen> {
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(page == 4 ? "Bitir" : "Geç"),
+                  child: Text(page == 4 ? "Finish" : "Skip"),
                 ),
               )
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class BoardingItem extends StatelessWidget {
-  final AssetImage image;
-  final String title;
-  final String description;
-
-  const BoardingItem({
-    Key? key,
-    required this.image,
-    required this.title,
-    required this.description,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: Padding(
-        padding: const EdgeInsets.all(28.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Image(image: image),
-            Column(
-              children: [
-                const Gap(20),
-                Text(
-                  title,
-                  style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                ),
-                const Gap(20),
-                Text(description),
-                const Gap(20),
-              ],
-            ),
-          ],
         ),
       ),
     );

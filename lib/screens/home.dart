@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import '../widgets/downmenu.dart';
+import '../widgets/bottommenu.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -141,10 +140,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            const DownMenu()
           ],
         ),
       ),
+      bottomNavigationBar: const BottomMenu(),
     );
   }
 }

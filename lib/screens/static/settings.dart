@@ -1,11 +1,11 @@
 import 'package:analysisrobo/bloc/client/client_cubit.dart';
 import 'package:analysisrobo/core/localizations.dart';
-import 'package:analysisrobo/widgets/downmenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../widgets/bottommenu.dart';
 import '../../widgets/settingsitem.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -101,10 +101,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
               ),
-              const DownMenu(),
             ],
           ),
         ),
+        bottomNavigationBar: const BottomMenu(),
       );
     });
   }

@@ -11,6 +11,16 @@
     "language":"Dil",
     "start-date":"Başlangıç Tarihi YYYY-AA-GG",
     "end-date":"Bitiş Tarihi YYYY-AA-GG",
-    "symbol":"Sembol (örn, TCELL.IS)"
+    "symbol":"Sembol (örn, TCELL.IS)",
+    "location_permissions":"Konum İzinleri",
+    "notification_permissions":"Bildirim izinleri",
+    "give_permission":"İzin Ver",
+    "authorized":"Yetkilendirildi",
+    "blocked":"Engellendi",
+    "restricted":"Kısıtlanmış",
+    "limited":"Sınırlı",
+    "completely_rejected":"Tamamen Reddedildi",
+    "temporary":"Geçici",
+    "denied":"Reddedildi"
 
 }

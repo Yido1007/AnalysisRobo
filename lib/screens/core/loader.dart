@@ -27,8 +27,7 @@ class _LoaderScreenState extends State<LoaderScreen> {
 
       // access to device language
 
-      await storage.setConfig(
-          language: getDeviceLanguage(), darkMode: darkMode);
+      await storage.setConfig(language: getDeviceLanguage(), darkMode: darkMode);
 
       GoRouter.of(context).replace("/boarding");
     } else {
@@ -54,7 +53,7 @@ class _LoaderScreenState extends State<LoaderScreen> {
       defaultLocale = "en";
     }
     final langParts = defaultLocale.split("_");
-    final supportedLanguages = ["en", "tr",];
+    final supportedLanguages = ["en", "tr", "it", "fr", "es", "de"];
 
     final String finalLang;
 
