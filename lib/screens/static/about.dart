@@ -41,7 +41,6 @@ class _AboutScreenState extends State<AboutScreen> {
                     AppLocalizations.of(context).getTranslate("about_text"),
                     style: const TextStyle(
                       fontSize: 22,
-                      color: Colors.black87,
                     ),
                     textAlign: TextAlign.center,
                   ),
