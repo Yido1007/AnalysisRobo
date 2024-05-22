@@ -11,7 +11,7 @@
     "language":"Language",
     "start-date":"Date de Début YYYY-MM-DD",
     "end-date":"Date de Fin YYYY-MM-DD",
-    "symbol":"Symbole (Exemple, TCELL.IS)",
+    "symbol":"Symbole (Exemple, BTC)",
     "location_permissions":"Localisation Permission",
     "notification_permissions":"Autorisation de Notification",
     "give_permission":"Donner la Permission",
