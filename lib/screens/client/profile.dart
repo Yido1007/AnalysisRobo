@@ -1,7 +1,6 @@
 import 'package:analysisrobo/core/localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../bloc/client/client_cubit.dart';
 
 class ProfileScreen extends StatefulWidget {
