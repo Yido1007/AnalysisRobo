@@ -22,15 +22,25 @@ class ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Builder(builder: (context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            AppLocalizations.of(context).getTranslate("account"),
-          ),
-          centerTitle: true,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          AppLocalizations.of(context).getTranslate("account"),
         ),
-      );
-    });
+        centerTitle: true,
+      ),
+      body: const SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              CircleAvatar(
+                backgroundImage: NetworkImage("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRy5QMODyHm-LaMpgXOqMIUHPbQ-Y51jAZR_UJYC-9Dv1IL3ovh"),
+                maxRadius: 42,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
