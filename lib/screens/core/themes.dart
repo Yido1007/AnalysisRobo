@@ -44,20 +44,19 @@ class _ThemeScreenState extends State<ThemeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(
+          AppLocalizations.of(context).getTranslate("appearance"),
+          style: const TextStyle(
+            fontSize: 20,
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 30.0, top: 10.0),
-              child: Text(
-                AppLocalizations.of(context).getTranslate("appearance"),
-                style: const TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
