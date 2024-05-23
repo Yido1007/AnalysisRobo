@@ -47,7 +47,9 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                           padding: const EdgeInsets.all(12),
                           width: 90,
                           decoration: BoxDecoration(
-                              border: Border.all(),
+                              border: Border.all(
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(20),
                               )),

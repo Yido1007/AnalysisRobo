@@ -82,7 +82,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                             context.read<ClientCubit>().changeDarkMode(darkMode: false);
                           });
                         },
-                        "assets/images/ThemeScreen/light_mode_example.jpg",
+                        "assets/images/light.JPG",
                       ),
                       themeModeItem(
                         context,
@@ -95,7 +95,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                             clientCubit.changeDarkMode(darkMode: true);
                           });
                         },
-                        "assets/images/ThemeScreen/dark_mode_example.jpg",
+                        "assets/images/dark.JPG",
                       ),
                     ],
                   ),
@@ -111,7 +111,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
   Widget themeModeItem(BuildContext context, String title, bool isChecked,
       void Function()? onChanged, String image) {
     return GestureDetector(
-      onTap: onChanged, // Resme tıklandığında onChanged fonksiyonunu çağır
+      onTap: onChanged,
       child: Column(
         children: [
           Container(

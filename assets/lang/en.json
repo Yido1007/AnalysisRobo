@@ -22,6 +22,7 @@
     "completely_rejected":"Completely Rejected",
     "temporary":"Temporary",
     "denied":"Denied",
-    "about_text":"Hello! As the Raspiyonel team, we aim to follow the cryptocurrency world and make it more understandable. With Rassyonel, you can monitor your favorite coins, make market analyzes and determine your strategies. Reliability, transparency and user privacy are our priority. We are here to grow with you."
-
+    "about_text":"Hello! As the Raspiyonel team, we aim to follow the cryptocurrency world and make it more understandable. With Rassyonel, you can monitor your favorite coins, make market analyzes and determine your strategies. Reliability, transparency and user privacy are our priority. We are here to grow with you.",
+    "light":"Light Mode",
+    "dark":"Dark Mode"
 }

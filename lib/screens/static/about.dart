@@ -37,12 +37,19 @@ class _AboutScreenState extends State<AboutScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    AppLocalizations.of(context).getTranslate("about_text"),
-                    style: const TextStyle(
-                      fontSize: 22,
+                  Card(
+                    color: Theme.of(context).colorScheme.tertiaryContainer,
+                    child: Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Text(
+                        AppLocalizations.of(context).getTranslate("about_text"),
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w500
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
