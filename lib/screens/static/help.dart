@@ -24,7 +24,7 @@ class _HelpScreenState extends State<HelpScreen> {
   List<Map<String, dynamic>> responses = [];
 
   loadData() async {
-    final data = await rootBundle.loadString('helper.json');
+    final data = await rootBundle.loadString('assets/helper.json');
     setState(() {
       helpData = jsonDecode(data);
       loading = false;
@@ -66,6 +66,8 @@ class _HelpScreenState extends State<HelpScreen> {
       }
     }
     searchController.text = "";
+
+    print(responsesX);
     setState(() {
       responses.addAll(responsesX);
     });

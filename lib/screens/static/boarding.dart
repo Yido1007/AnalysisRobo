@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:preload_page_view/preload_page_view.dart';
-import '../../core/localizations.dart';
+// import '../../core/localizations.dart';
 import '../../core/storage.dart';
 import '../../widgets/boardingitem.dart';
 
@@ -37,26 +37,8 @@ class _BoardingScreenState extends State<BoardingScreen> {
           children: [
             BoardingItem(
                 image: AssetImage('assets/images/boarding-1.webp'),
-                title: AppLocalizations.of(context).getTranslate("boarding_title-1"),
-                description: AppLocalizations.of(context).getTranslate("boarding_description-1")),
-            BoardingItem(
-                image: AssetImage('assets/images/boarding/boarding-2.jpg'),
-                title: AppLocalizations.of(context).getTranslate("boarding_title-2"),
-                description: AppLocalizations.of(context).getTranslate("boarding_description-2")),
-            BoardingItem(
-              image: AssetImage('assets/images/boarding/boarding-3.jpg'),
-              title: AppLocalizations.of(context).getTranslate("boarding_title-3"),
-              description: AppLocalizations.of(context).getTranslate("boarding_description-3"),
-            ),
-            BoardingItem(
-              image: AssetImage('assets/images/boarding/boarding-4.jpg'),
-              title: AppLocalizations.of(context).getTranslate("boarding_title-4"),
-              description: AppLocalizations.of(context).getTranslate("boarding_description-4"),
-            ),
-            BoardingItem(
-                image: AssetImage('assets/images/logo/GR_Logo.png'),
-                title: AppLocalizations.of(context).getTranslate("boarding_title-5"),
-                description: AppLocalizations.of(context).getTranslate("boarding_description-5")),
+                title: "Title",
+                description: "Description"),
           ],
         ),
       ),

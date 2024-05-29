@@ -10,7 +10,7 @@ class Coin {
     return Coin(
       name: json['name'],
       symbol: json['symbol'],
-      price: json['current_price'],
+      price: json['current_price'].toDouble(),
       image: json['image'],
     );
   }
