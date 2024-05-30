@@ -15,41 +15,35 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class ProfileScreenState extends State<ProfileScreen> {
-late ClientCubit clientCubit;
+  late ClientCubit clientCubit;
 
   File? dosya;
 
-  profilePhotoUptade()async {
-
-    try{
+  profilePhotoUptade() async {
+    try {
       ImagePicker picker = ImagePicker();
-     XFile? secilenDosya = await picker.pickImage(source: ImageSource.gallery);
-    if(secilenDosya == null){
-      setState(() {
-        dosya = null;
-      }); 
-      return;
-    }
+      XFile? secilenDosya = await picker.pickImage(source: ImageSource.gallery);
+      if (secilenDosya == null) {
+        setState(() {
+          dosya = null;
+        });
+        return;
+      }
 
-    setState(() {
-      dosya = File(secilenDosya.path);
-    });
-     
-    
-    } on Exception catch(e) { 
-      print("Error" );
+      setState(() {
+        dosya = File(secilenDosya.path);
+      });
+    } on Exception catch (e) {
+      print("Error");
       print(e);
     }
-}
-
+  }
 
   @override
   void initState() {
     super.initState();
     clientCubit = context.read<ClientCubit>();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -66,15 +60,17 @@ late ClientCubit clientCubit;
             children: [
               const Gap(10),
               const CircleAvatar(
-                backgroundImage: NetworkImage("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRy5QMODyHm-LaMpgXOqMIUHPbQ-Y51jAZR_UJYC-9Dv1IL3ovh"),
+                backgroundImage: NetworkImage(
+                    "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRy5QMODyHm-LaMpgXOqMIUHPbQ-Y51jAZR_UJYC-9Dv1IL3ovh"),
                 maxRadius: 64,
               ),
               const Gap(10),
-              OutlinedButton(onPressed:  profilePhotoUptade , 
-              child: const Text("Profile Photo Update "), 
+              OutlinedButton(
+                onPressed: profilePhotoUptade,
+                child: const Text("Profile Photo Update "),
               ),
               const Gap(10),
-              if(dosya !=null) Image.file(dosya!),
+              if (dosya != null) Image.file(dosya!),
             ],
           ),
         ),
