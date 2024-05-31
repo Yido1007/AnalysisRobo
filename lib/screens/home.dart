@@ -55,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
     clientCubit = context.read<ClientCubit>();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -96,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   dataSource: _lineChartData,
                                   xValueMapper: (CoinPrice price, _) => price.date,
                                   yValueMapper: (CoinPrice price, _) => price.price,
-                                  dataLabelSettings: DataLabelSettings(isVisible: false),
+                                  dataLabelSettings: const DataLabelSettings(isVisible: false),
                                   color: Colors.blue,
                                   width: 2,
                                 ),
