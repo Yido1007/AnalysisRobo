@@ -68,8 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
               children: <Widget>[
                 TextField(
                   controller: _controller,
-                  decoration: const InputDecoration(
-                    labelText: 'Enter Coin Symbol (e.g., BTC, ETH)',
+                  decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context).getTranslate("symbol"),
                   ),
                   onSubmitted: (String value) {
                     _fetchCoinData(value.toUpperCase());
@@ -80,7 +80,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: _loading
                       ? const Center(child: CircularProgressIndicator())
                       : _lineChartData.isEmpty
-                          ? const Center(child: Text('Enter a coin symbol to see the chart'))
+                          ? Center(
+                              child: Text(AppLocalizations.of(context).getTranslate("symbol_text")))
                           : SfCartesianChart(
                               primaryXAxis: DateTimeAxis(
                                 dateFormat: DateFormat.Md(),
@@ -106,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-       bottomNavigationBar: const BottomMenu() );
+        bottomNavigationBar: const BottomMenu());
   }
 }
 
