@@ -30,7 +30,7 @@ class _LoaderScreenState extends State<LoaderScreen> {
       // access to device language
       await storage.setConfig(language: getDeviceLanguage(), darkMode: darkMode);
 
-      Future.delayed(const Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 10), () {
         context.go("/boarding");
       });
     } else {
@@ -84,15 +84,17 @@ class _LoaderScreenState extends State<LoaderScreen> {
           width: double.infinity,
           height: double.infinity,
           color: Colors.blue,
-          child: const Stack(
+          child: Stack(
             children: [
               Center(
-                child: Text("Logo"),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
+                  child: Image.asset(
+                    "assets/icons/InvenstAnalys_black.jpg",
+                    width: 150,
+                  ),
+                ),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: CircularProgressIndicator(),
-              )
             ],
           ),
         ),
