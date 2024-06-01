@@ -24,12 +24,12 @@ class _LoaderScreenState extends State<LoaderScreen> {
     if (firstLaunch) {
       // access to device dark theme
       const darkMode = ThemeMode.system == ThemeMode.dark;
-
       // access to device language
-
       await storage.setConfig(language: getDeviceLanguage(), darkMode: darkMode);
 
-      GoRouter.of(context).replace("/boarding");
+      Future.delayed(const Duration(seconds: 2), () {
+        context.go("/boarding");
+      });
     } else {
       final config = await storage.getConfig();
 
@@ -74,9 +74,24 @@ class _LoaderScreenState extends State<LoaderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: Colors.blue,
+          child: const Stack(
+            children: [
+              Center(
+                child: Text("Logo"),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: CircularProgressIndicator(),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
