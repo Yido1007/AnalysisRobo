@@ -13,56 +13,56 @@
   },
   {
     "response_type":"stockmarketinformation",
-    "user_input": ["What","is","","the","stock","market"],
+    "user_input": ["what","is","","the","stock","market"],
     "bot_response":"The stock market is a marketplace where stocks, bonds, and other financial instruments are bought and sold.",
-    "required_words": ["What","is","","the","stock","market"]
+    "required_words": ["what","is","","the","stock","market"]
    },
    {
     "response_type":"stockinformation",
-    "user_input": ["What","is","stock"],
+    "user_input": ["what","is","stock"],
     "bot_response":" A stock represents a share in the ownership of a company and constitutes a claim on part of the company's assets and earnings.",
-    "required_words": ["What","is","stock"]
+    "required_words": ["what","is","stock"]
    },
    {
     "response_type":"bondinformation",
-    "user_input": ["What","is","bond"],
+    "user_input": ["what","is","bond"],
     "bot_response":"A bond is a debt security in which an investor loans money to a corporate or governmental entity that borrows the funds for a defined period at a fixed interest rate.",
-    "required_words": ["What","is","bond"]
+    "required_words": ["what","is","bond"]
    },
    {
     "response_type":"technicalanalysisinfo",
-    "user_input": ["What","is","technical","analysis"],
+    "user_input": ["what","is","technical","analysis"],
     "bot_response":"Technical analysis is a method used to forecast the direction of prices through the study of past market data, primarily price and volume.",
-    "required_words": ["What","is","technical","analysis"]
+    "required_words": ["what","is","technical","analysis"]
    },
    {
     "response_type":"marketdatainfo",
-    "user_input": ["How","can","I","track","live","market","data","in","the,","app"],
+    "user_input": ["how","can","I","track","live","market","data","in","the,","app"],
     "bot_response":"To track live market data, go to the 'Live Market' or 'Market Data' section on the homepage. Here, you can view real-time price changes, volumes, and other key information.",
-    "required_words": ["How","can","I","track","live","market","data","in","the,","app"]
+    "required_words": ["how","can","I","track","live","market","data","in","the,","app"]
    },
    {
     "response_type":"fundemantalanalysisinfo",
-    "user_input": ["What","is","fundemantal","analysis"],
+    "user_input": ["what","is","fundemantal","analysis"],
     "bot_response":"Fundamental analysis involves evaluating a company's financial health, management, industry conditions, and other economic factors to determine its intrinsic value.",
-    "required_words": ["What","is","fundemantal","analysis"]
+    "required_words": ["what","is","fundemantal","analysis"]
    },
    {
     "response_type":"notificationsinfo",
-    "user_input": ["How","can","I","enable","or","disable","notifications?"],
+    "user_input": ["how","can","I","enable","or","disable","notifications?"],
     "bot_response":"To enable or disable notifications, log in to your account, go to the 'Settings' section, and manage your notification preferences from there.",
-    "required_words": ["How","can","I","enable","or","disable","notifications"]
+    "required_words": ["how","can","I","enable","or","disable","notifications"]
    },
    {
     "response_type":"thisappinfo",
-    "user_input": ["What","does","this","app","do"],
+    "user_input": ["what","does","this","app","do"],
     "bot_response":"We aim to get information about coins, follow the market and help you as a help bot.",
-    "required_words": ["What","does","this","app","do"]
+    "required_words": ["what","does","this","app","do"]
    },
    {
     "response_type":"marketmanipulation",
-    "user_input": ["What","is","market","manipulation"],
+    "user_input": ["what","is","market","manipulation"],
     "bot_response":"Market manipulation involves artificially inflating or deflating the price of a security or otherwise influencing the market's behavior for personal gain through deceitful or unfair practices.",
-    "required_words": ["What","is","market","manipulation"]
+    "required_words": ["what","is","market","manipulation"]
    }
 ]
