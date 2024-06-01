@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BottomMenu extends StatelessWidget {
+  final String currentPath;
+
   const BottomMenu({
     super.key,
+    required this.currentPath,
   });
 
   @override

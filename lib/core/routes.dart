@@ -26,25 +26,23 @@ final routes = GoRouter(
     ShellRoute(
       navigatorKey: _shellNavigatorKey,
       builder: (context, state, child) => HomeScreen(
+        state: state,
         child: child,
       ),
       routes: [
         GoRoute(
           parentNavigatorKey: _shellNavigatorKey,
           path: '/home',
-
           pageBuilder: (context, state) => const NoTransitionPage(child: HomeScreenFrame()),
         ),
         GoRoute(
           parentNavigatorKey: _shellNavigatorKey,
           path: '/exchange',
-
           pageBuilder: (context, state) => const NoTransitionPage(child: ExchangeScreen()),
         ),
         GoRoute(
           parentNavigatorKey: _shellNavigatorKey,
           path: '/settings',
-
           pageBuilder: (context, state) => const NoTransitionPage(child: SettingsScreen()),
         ),
       ],
