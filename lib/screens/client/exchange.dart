@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../../bloc/client/client_cubit.dart';
 import '../../core/coin_provider.dart';
 import '../../core/localizations.dart';
-import '../../widgets/bottommenu.dart';
+
 
 class ExchangeScreen extends StatefulWidget {
   const ExchangeScreen({super.key});
@@ -62,7 +62,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                     );
                   },
                 ),
-          bottomNavigationBar: const BottomMenu(),
+
         );
       },
     );

@@ -2,9 +2,11 @@
 
 import 'dart:io';
 
+import 'package:analysisrobo/bloc/client/client_cubit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/storage.dart';
 
@@ -16,6 +18,7 @@ class LoaderScreen extends StatefulWidget {
 }
 
 class _LoaderScreenState extends State<LoaderScreen> {
+  late ClientCubit clientCubit;
   loadApp() async {
     final storage = Storage();
     // await storage.clearStorage();
@@ -69,6 +72,7 @@ class _LoaderScreenState extends State<LoaderScreen> {
   @override
   void initState() {
     super.initState();
+    clientCubit = context.read<ClientCubit>();
     loadApp();
   }
 
