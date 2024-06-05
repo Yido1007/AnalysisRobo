@@ -8,6 +8,7 @@ import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/scheduler.dart';
 
 class HelpScreen extends StatefulWidget {
   const HelpScreen({super.key});
@@ -20,18 +21,32 @@ class _HelpScreenState extends State<HelpScreen> {
   bool loading = true;
   List<dynamic> helpData = [];
   TextEditingController searchController = TextEditingController();
+  ScrollController _scrollController = ScrollController();
 
   List<Map<String, dynamic>> responses = [];
 
-  loadData() async {
-    final data = await rootBundle.loadString('assets/helper.json');
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+    clientCubit = context.read<ClientCubit>();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  Future<void> loadData() async {
+    final data = await rootBundle.loadString('assets/bot/helper.json');
     setState(() {
       helpData = jsonDecode(data);
       loading = false;
     });
   }
 
-  query() {
+  void query() {
     Set<Map<String, dynamic>> responsesX = {};
 
     responsesX.add({
@@ -65,21 +80,28 @@ class _HelpScreenState extends State<HelpScreen> {
         });
       }
     }
-    searchController.text = "";
+    searchController.clear();
 
-    print(responsesX);
     setState(() {
       responses.addAll(responsesX);
+    });
+
+    _scrollToBottom();
+  }
+
+  void _scrollToBottom() {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
     });
   }
 
   late ClientCubit clientCubit;
-  @override
-  void initState() {
-    super.initState();
-    loadData();
-    clientCubit = context.read<ClientCubit>();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +117,7 @@ class _HelpScreenState extends State<HelpScreen> {
               Expanded(
                 child: SizedBox.expand(
                   child: ListView.builder(
+                    controller: _scrollController,
                     itemCount: responses.length,
                     itemBuilder: (context, index) => BubbleSpecialThree(
                       text: responses[index]["msg"],
@@ -104,13 +127,11 @@ class _HelpScreenState extends State<HelpScreen> {
                   ),
                 ),
               ),
-              //Text field padding
               Row(
                 children: [
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(13.0),
-                      // Text field
                       child: TextField(
                         controller: searchController,
                       ),
@@ -118,9 +139,7 @@ class _HelpScreenState extends State<HelpScreen> {
                   ),
                   IconButton(
                     onPressed: query,
-                    icon: Icon(
-                      Icons.send,
-                    ),
+                    icon: Icon(Icons.send),
                   )
                 ],
               ),

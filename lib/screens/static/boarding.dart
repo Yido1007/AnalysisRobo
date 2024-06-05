@@ -34,7 +34,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
               page = value;
             });
           },
-          children: [
+          children: const [
             BoardingItem(
                 image: AssetImage('assets/images/boarding-1.webp'),
                 title: "Title",

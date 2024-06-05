@@ -45,4 +45,4 @@ flutter:
     - assets/images/
     - assets/lang/
     - assets/icons/
-    - assets/helper.json
+    - assets/bot/
