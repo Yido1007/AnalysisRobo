@@ -3,6 +3,8 @@
 import 'dart:io';
 
 import 'package:analysisrobo/bloc/client/client_cubit.dart';
+import 'package:analysisrobo/screens/core/cache.dart';
+import 'package:analysisrobo/screens/core/color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -18,8 +20,20 @@ class LoaderScreen extends StatefulWidget {
 }
 
 class _LoaderScreenState extends State<LoaderScreen> {
+  Map<String, dynamic> pageConfig = {};
+  bool configLoader = false;
+
   late ClientCubit clientCubit;
   loadApp() async {
+    CacheSystem cs = CacheSystem();
+
+    final pageConfig = await cs.splashConfig();
+
+    setState(() {
+      this.pageConfig = pageConfig;
+      configLoader = true;
+    });
+
     final storage = Storage();
     // await storage.clearStorage();
     final firstLaunch = await storage.isFirstLaunch();
@@ -30,7 +44,7 @@ class _LoaderScreenState extends State<LoaderScreen> {
       // access to device language
       await storage.setConfig(language: getDeviceLanguage(), darkMode: darkMode);
 
-      Future.delayed(const Duration(seconds: 10), () {
+      Future.delayed(Duration(milliseconds: pageConfig["duration"]), () {
         context.go("/boarding");
       });
     } else {
@@ -78,27 +92,33 @@ class _LoaderScreenState extends State<LoaderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          color: Colors.blue,
-          child: Stack(
-            children: [
-              Center(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
-                  child: Image.asset(
-                    "assets/icons/InvenstAnalys_black.jpg",
-                    width: 150,
-                  ),
+    return !configLoader
+        ? const SizedBox()
+        : Scaffold(
+            body: SafeArea(
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  color: pageConfig["backgroundColor"].isNotEmpty
+                      ? HexColor(pageConfig["backgroundColor"])
+                      : null,
+                ),
+                child: Stack(
+                  children: [
+                    Center(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5),
+                        child: Image.asset(
+                          pageConfig["logo"],
+                          width: 150,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          );
   }
 }
