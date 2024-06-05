@@ -1,6 +1,6 @@
 class Api {
   splash() async {
-    return await Future.delayed(Duration(milliseconds: 800), () {
+    return await Future.delayed(const Duration(milliseconds: 800), () {
       return {
         "background":
             "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/b547b5111139045.5ffc8a2ab537c.jpg",
