@@ -21,7 +21,7 @@ class _HelpScreenState extends State<HelpScreen> {
   bool loading = true;
   List<dynamic> helpData = [];
   TextEditingController searchController = TextEditingController();
-  ScrollController _scrollController = ScrollController();
+  ScrollController scrollController = ScrollController();
 
   List<Map<String, dynamic>> responses = [];
 
@@ -34,7 +34,7 @@ class _HelpScreenState extends State<HelpScreen> {
 
   @override
   void dispose() {
-    _scrollController.dispose();
+    scrollController.dispose();
     super.dispose();
   }
 
@@ -91,9 +91,9 @@ class _HelpScreenState extends State<HelpScreen> {
 
   void _scrollToBottom() {
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      if (_scrollController.hasClients) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
+      if (scrollController.hasClients) {
+        scrollController.animateTo(
+          scrollController.position.maxScrollExtent,
           duration: Duration(milliseconds: 300),
           curve: Curves.easeOut,
         );
@@ -116,13 +116,18 @@ class _HelpScreenState extends State<HelpScreen> {
             children: [
               Expanded(
                 child: SizedBox.expand(
-                  child: ListView.builder(
-                    controller: _scrollController,
-                    itemCount: responses.length,
-                    itemBuilder: (context, index) => BubbleSpecialThree(
-                      text: responses[index]["msg"],
-                      tail: true,
-                      isSender: responses[index]["me"],
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 12.0),
+                    child: ListView.builder(
+                      controller: scrollController,
+                      itemCount: responses.length,
+                      itemBuilder: (context, index) => BubbleSpecialThree(
+                        color: Theme.of(context).colorScheme.tertiaryContainer,
+                        text: responses[index]["msg"],
+                        textStyle: TextStyle(color: Theme.of(context).colorScheme.inverseSurface),
+                        tail: true,
+                        isSender: responses[index]["me"],
+                      ),
                     ),
                   ),
                 ),
