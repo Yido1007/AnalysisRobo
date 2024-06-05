@@ -8,6 +8,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'dart:convert';
 
 import '../../bloc/client/client_cubit.dart';
+import '../../services/api.dart';
 
 class HomeScreenFrame extends StatefulWidget {
   const HomeScreenFrame({super.key});
@@ -17,6 +18,11 @@ class HomeScreenFrame extends StatefulWidget {
 }
 
 class _HomeScreenFrameState extends State<HomeScreenFrame> {
+  pageConfig() async {
+    Api api = Api();
+    final server = await api.splash();
+  }
+
   List<CoinPrice> _lineChartData = [];
   bool _loading = false;
   final TextEditingController _controller = TextEditingController();

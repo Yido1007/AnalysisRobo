@@ -7,6 +7,11 @@ class CacheSystem {
     return data;
   }
 
+  Future<Map<String, dynamic>> aboutConfig() async {
+    Map<String, dynamic> data = await loadJsonFromAssets("assets/static/about.json");
+    return data;
+  }
+
   Future<Map<String, dynamic>> loadJsonFromAssets(String filePath) async {
     String jsonString = await rootBundle.loadString(filePath);
     return jsonDecode(jsonString);

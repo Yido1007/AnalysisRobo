@@ -1,4 +1,5 @@
 import 'package:analysisrobo/screens/client/languages.dart';
+// import 'package:analysisrobo/screens/client/news.dart';
 import 'package:analysisrobo/screens/client/notifications.dart';
 import 'package:analysisrobo/screens/core/themes.dart';
 import 'package:analysisrobo/screens/core/loader.dart';
@@ -45,6 +46,11 @@ final routes = GoRouter(
           path: '/settings',
           pageBuilder: (context, state) => const NoTransitionPage(child: SettingsScreen()),
         ),
+        // GoRoute(
+        //   parentNavigatorKey: _shellNavigatorKey,
+        //   path: '/news',
+        //   pageBuilder: (context, state) => const NoTransitionPage(child: NewsScreen()),
+        // ),
       ],
     ),
     GoRoute(

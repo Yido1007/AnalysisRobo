@@ -1,8 +1,9 @@
 import 'package:analysisrobo/core/localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:gap/gap.dart';
 import '../../bloc/client/client_cubit.dart';
+import '../core/cache.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -12,51 +13,78 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
-  late ClientCubit clientCubit;
+  Map<String, dynamic> pageConfig = {};
+  bool configLoader = false;
+  loadData() async {
+    CacheSystem cs = CacheSystem();
+    final pageConfig = await cs.aboutConfig();
+    setState(() {
+      this.pageConfig = pageConfig;
+      configLoader = true;
+    });
+  }
 
+  late ClientCubit clientCubit;
   @override
   void initState() {
     super.initState();
     clientCubit = context.read<ClientCubit>();
+    loadData();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ClientCubit, ClientState>(
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              AppLocalizations.of(context).getTranslate("about"),
-            ),
-            centerTitle: true,
-          ),
-          body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Card(
-                    color: Theme.of(context).colorScheme.tertiaryContainer,
-                    child: Padding(
-                      padding: const EdgeInsets.all(18.0),
-                      child: Text(
-                        AppLocalizations.of(context).getTranslate("about_text"),
-                        style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w500
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+    return BlocBuilder<ClientCubit, ClientState>(builder: (context, state) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(AppLocalizations.of(context).getTranslate("about")),
+          centerTitle: true,
+        ),
+        body: !configLoader
+            ? const SizedBox()
+            : SizedBox.expand(
+                child: ListView(
+                  children: [
+                    const Gap(25),
+                    Column(
+                      children: [
+                        if (pageConfig["cover"].isNotEmpty)
+                          ClipRRect(
+                              child: Image.asset(
+                            pageConfig["cover"],
+                            cacheWidth: 250,
+                          )),
+                        if (pageConfig["title"].isNotEmpty)
+                          Text(
+                            pageConfig["title"],
+                            style: const TextStyle(fontSize: 34, fontWeight: FontWeight.w600),
+                          ),
+                        const Gap(10),
+                        if (pageConfig["subtitle"].isNotEmpty)
+                          Text(
+                            pageConfig["subtitle"],
+                            style: const TextStyle(
+                              fontSize: 22,
+                            ),
+                          ),
+                        const Gap(10),
+                        if (pageConfig["text"].isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.all(18.0),
+                            child: Text(
+                              pageConfig["text"],
+                              style: const TextStyle(
+                                  fontSize: 15,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                      ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ),
-        );
-      },
-    );
+      );
+    });
   }
 }
