@@ -24,7 +24,8 @@ class _NewsScreenState extends State<NewsScreen> {
     return BlocBuilder<ClientCubit, ClientState>(builder: (context, state) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context).getTranslate("")),
+          title: Text(AppLocalizations.of(context).getTranslate("news")),
+          centerTitle: true,
         ),
         body: Container(),
       );
