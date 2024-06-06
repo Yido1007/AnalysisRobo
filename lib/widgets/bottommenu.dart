@@ -11,18 +11,37 @@ class BottomMenu extends StatelessWidget {
     required this.currentPath,
   });
 
+  int _getSelectedIndex() {
+    switch (currentPath) {
+      case "/home":
+        return 0;
+      case "/news":
+        return 1;
+      case "/exchange":
+        return 2;
+      case "/settings":
+        return 3;
+      default:
+        return 0;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      currentIndex: _getSelectedIndex(),
       onTap: (value) {
         switch (value) {
           case 0:
             GoRouter.of(context).go("/home");
             break;
           case 1:
-            GoRouter.of(context).go("/exchange");
+            GoRouter.of(context).go("/news");
             break;
           case 2:
+            GoRouter.of(context).go("/exchange");
+            break;
+          case 3:
             GoRouter.of(context).go("/settings");
             break;
         }
@@ -32,6 +51,10 @@ class BottomMenu extends StatelessWidget {
         BottomNavigationBarItem(
           icon: const Icon(Icons.home_outlined),
           label: AppLocalizations.of(context).getTranslate("home"),
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(CupertinoIcons.news),
+          label: AppLocalizations.of(context).getTranslate("exchange"),
         ),
         // Coins Screen Navigation
         BottomNavigationBarItem(
