@@ -1,5 +1,5 @@
-import 'package:analysisrobo/bloc/client/client_cubit.dart';
-import 'package:analysisrobo/core/localizations.dart';
+import 'package:InvenstAnalys/bloc/client/client_cubit.dart';
+import 'package:InvenstAnalys/core/localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

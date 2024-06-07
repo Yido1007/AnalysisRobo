@@ -2,9 +2,9 @@
 
 import 'dart:io';
 
-import 'package:analysisrobo/bloc/client/client_cubit.dart';
-import 'package:analysisrobo/screens/core/cache.dart';
-import 'package:analysisrobo/screens/core/color.dart';
+import 'package:InvenstAnalys/bloc/client/client_cubit.dart';
+import 'package:InvenstAnalys/screens/core/cache.dart';
+import 'package:InvenstAnalys/screens/core/color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

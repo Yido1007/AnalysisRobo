@@ -2,8 +2,8 @@
 
 import 'dart:convert';
 // import 'dart:math';
-import 'package:analysisrobo/bloc/client/client_cubit.dart';
-import 'package:analysisrobo/core/localizations.dart';
+import 'package:InvenstAnalys/bloc/client/client_cubit.dart';
+import 'package:InvenstAnalys/core/localizations.dart';
 import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
