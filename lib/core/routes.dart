@@ -1,9 +1,9 @@
-import 'package:InvenstAnalys/screens/client/languages.dart';
-import 'package:InvenstAnalys/screens/client/news.dart';
-import 'package:InvenstAnalys/screens/client/notifications.dart';
-import 'package:InvenstAnalys/screens/core/themes.dart';
-import 'package:InvenstAnalys/screens/core/loader.dart';
-import 'package:InvenstAnalys/screens/static/home_frame.dart';
+import 'package:analysisrobo/screens/client/languages.dart';
+import 'package:analysisrobo/screens/client/news.dart';
+import 'package:analysisrobo/screens/client/notifications.dart';
+import 'package:analysisrobo/screens/core/themes.dart';
+import 'package:analysisrobo/screens/core/loader.dart';
+import 'package:analysisrobo/screens/static/home_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

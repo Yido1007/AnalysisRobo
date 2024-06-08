@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "InvenstAnalys",
+            "name": "analysisrobo",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "InvenstAnalys (profile mode)",
+            "name": "analysisrobo (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "InvenstAnalys (release mode)",
+            "name": "analysisrobo (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

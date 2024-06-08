@@ -1,4 +1,4 @@
-package com.example.InvenstAnalys
+package com.example.analysisrobo
 
 import io.flutter.embedding.android.FlutterActivity
 

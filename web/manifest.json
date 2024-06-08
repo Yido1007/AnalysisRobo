@@ -1,6 +1,6 @@
 {
-    "name": "InvenstAnalys",
-    "short_name": "InvenstAnalys",
+    "name": "analysisrobo",
+    "short_name": "analysisrobo",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
