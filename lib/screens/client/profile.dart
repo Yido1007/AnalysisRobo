@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image/image.dart' as img;
+import 'package:path_provider/path_provider.dart';
 import '../../bloc/client/client_cubit.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -19,116 +20,115 @@ class ProfileScreenState extends State<ProfileScreen> {
 
   File? dosya;
   String boyutlar = "";
+  File? cacheDosyasi;
 
+  @override
+  void initState() {
+    super.initState();
+    clientCubit = context.read<ClientCubit>();
+    profiliVarsaYukle();
+  }
 
-  profilePhotoUptade() async {
+  Future<void> profiliVarsaYukle() async {
+    try {
+      final Directory appCacheDir = await getTemporaryDirectory();
+      File f = File("${appCacheDir.path}/avatar.jpg");
+
+      if (f.existsSync()) {
+        print("Dosya Bulundu");
+        setState(() {
+          cacheDosyasi = f;
+        });
+      } else {
+        print("Dosya Bulunmadı");
+      }
+    } catch (e) {
+      print("Error in profiliVarsaYukle: $e");
+    }
+  }
+
+  Future<void> profilePhotoUptade() async {
     try {
       ImagePicker picker = ImagePicker();
-      XFile? secilenDosya = await picker.pickImage(source: ImageSource.gallery,requestFullMetadata: false);
-      
+      XFile? secilenDosya = await picker.pickImage(
+        source: ImageSource.gallery,
+        requestFullMetadata: false,
+      );
+
       if (secilenDosya == null) {
         setState(() {
           dosya = null;
         });
         return;
       }
-      var fileLength = await secilenDosya.length();
 
-    
-   var dosyaFormati = secilenDosya.name.split(".").last;
-//profilim.JPG
-    bool kucutebilirmiyim = false;
-    
-    switch(dosyaFormati.toLowerCase()) {
-      case ("jpg"):
-      case ("jpeg"):
-      case ("bmp"):
-      case ("tiff"):
-      case ("ico"):
-      case ("gif"):
-      case ("png"):
-      kucutebilirmiyim = true;
-    
-    }
-    
-    if(!kucutebilirmiyim){
- showDialog(context: context, builder: (context) => const AlertDialog(title: Text("Dosya Boyutu"),content: Text("Sectiginiz dosya boyutu cok kucuk"),));
-    }  
-    img.Image?   temp;
-    if(dosyaFormati.toLowerCase() == "jpg" || dosyaFormati.toLowerCase() == "jpeg"){
-          temp = img.decodeJpg(File(secilenDosya.path).readAsBytesSync());
+      var dosyaFormati = secilenDosya.name.split(".").last.toLowerCase();
+      bool kucutebilirmiyim = ["jpg", "jpeg", "bmp", "tiff", "ico", "gif", "png"].contains(dosyaFormati);
 
-    }
-
-    else if (dosyaFormati.toLowerCase() ==  "png" ) {
-      temp = img.decodePng(File(secilenDosya.path).readAsBytesSync());
-    }
-    else if (dosyaFormati.toLowerCase() ==  "bmp" ) {
-      temp = img.decodeBmp(File(secilenDosya.path).readAsBytesSync());
-    }
-    else if (dosyaFormati.toLowerCase() ==  "gif" ) {
-      temp = img.decodeGif(File(secilenDosya.path).readAsBytesSync());
-    }
-    else if (dosyaFormati.toLowerCase() ==  "tiff" ) {
-      temp = img.decodeTiff(File(secilenDosya.path).readAsBytesSync());
-    }
-    else if (dosyaFormati.toLowerCase() ==  "ico" ) {
-      temp = img.decodeIco(File(secilenDosya.path).readAsBytesSync());
-    }
-    
-  
-     if(temp!.width <500 || temp.height <500 || temp == null ){
-      showDialog(context: context, builder: (context) => const AlertDialog(title: Text("Dosya Tipi"),content: Text("Sectiginiz dosya desteklenmiyor"),));
+      if (!kucutebilirmiyim) {
+        showDialog(
+          context: context,
+          builder: (context) => const AlertDialog(
+            title: Text("Dosya Boyutu"),
+            content: Text("Seçtiğiniz dosya boyutu çok küçük"),
+          ),
+        );
         return;
-   
-   } 
-    //resize 
+      }
 
-     // Read a jpeg image from file.
-  
-  // Resize the image to a 120x? thumbnail (maintaining the aspect ratio).
-  // ignore: dead_code
-  img.Image thumbnail = img.copyResize(temp, width: 500);
-  // Save the thumbnail to a jpeg file.
-  final resizedDosyaVerileri =  img.encodeJpg(thumbnail,quality: 85);
+      img.Image? temp;
+      final bytes = await File(secilenDosya.path).readAsBytes();
+      switch (dosyaFormati) {
+        case "jpg":
+        case "jpeg":
+          temp = img.decodeJpg(bytes);
+          break;
+        case "png":
+          temp = img.decodePng(bytes);
+          break;
+        case "bmp":
+          temp = img.decodeBmp(bytes);
+          break;
+        case "gif":
+          temp = img.decodeGif(bytes);
+          break;
+        case "tiff":
+          temp = img.decodeTiff(bytes);
+          break;
+        case "ico":
+          temp = img.decodeIco(bytes);
+          break;
+      }
 
+      if (temp == null || temp.width < 500 || temp.height < 500) {
+        showDialog(
+          context: context,
+          builder: (context) => const AlertDialog(
+            title: Text("Dosya Tipi"),
+            content: Text("Seçtiğiniz dosya desteklenmiyor"),
+          ),
+        );
+        return;
+      }
 
+      img.Image thumbnail = temp.width >= temp.height
+          ? img.copyResize(temp, height: 500)
+          : img.copyResize(temp, width: 500);
 
+      final resizedDosyaVerileri = img.encodeJpg(thumbnail, quality: 85);
+      final Directory tempDir = await getTemporaryDirectory();
+      File yeniFile = File("${tempDir.path}/avatar_temp.jpg");
 
+      await yeniFile.writeAsBytes(resizedDosyaVerileri, flush: true);
 
- //    final yeniDosyam = File.fromRawPath(resizedDosyaVerileri);
-      
-    File yeniFile = File(secilenDosya.path + "resized.jpg" );
-
-    yeniFile.writeAsBytesSync(resizedDosyaVerileri);
-   // img.Image?   temp2 = img.decodeJpg(yeniDosyam.readAsBytesSync());
-
-
-  //  print ("yeni dosya boyutları: ${temp2!.width}x${temp2!.height} ");
-
-
-      
       setState(() {
-        dosya = yeniFile; 
-        boyutlar = "${temp!.width}x${temp!.height}";
+        dosya = yeniFile;
+        cacheDosyasi = yeniFile;
+        boyutlar = "${temp!.width}x${temp.height}";
       });
-
-      
-
-
-
-
-      
-    } on Exception catch (e) {
-      print("Error");
-      print(e);
+    } catch (e) {
+      print("Error in profilePhotoUptade: $e");
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    clientCubit = context.read<ClientCubit>();
   }
 
   @override
@@ -145,29 +145,34 @@ class ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             children: [
               const Gap(10),
-              const CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRy5QMODyHm-LaMpgXOqMIUHPbQ-Y51jAZR_UJYC-9Dv1IL3ovh"),
-                maxRadius: 64,
-              ),
+              if (cacheDosyasi != null)
+                CircleAvatar(
+                  backgroundImage: FileImage(cacheDosyasi!),
+                  maxRadius: 64,
+                )
+              else
+                const CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRy5QMODyHm-LaMpgXOqMIUHPbQ-Y51jAZR_UJYC-9Dv1IL3ovh"),
+                  maxRadius: 64,
+                ),
               const Gap(10),
               OutlinedButton(
                 onPressed: profilePhotoUptade,
-                child: const Text("Profile Photo Update "),
+                child: const Text("Profile Photo Update"),
               ),
               const Gap(10),
-              if (dosya != null) Column(
-                children: [
-                  Text("File Size: ${dosya!.lengthSync()/1000} KB"),
-                  Text("Boyutlar: $boyutlar"),
-                  CircleAvatar(
-                    radius: 64,
-                    backgroundImage: FileImage(
-                      dosya!,
+              if (dosya != null)
+                Column(
+                  children: [
+                    Text("File Size: ${dosya!.lengthSync() / 1000} KB"),
+                    Text("Boyutlar: $boyutlar"),
+                    CircleAvatar(
+                      radius: 64,
+                      backgroundImage: FileImage(dosya!),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
             ],
           ),
         ),
