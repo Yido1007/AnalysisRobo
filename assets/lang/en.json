@@ -25,5 +25,8 @@
     "denied":"Denied",
     "light":"Light Mode",
     "dark":"Dark Mode",
-    "news":"News"
+    "news":"News",
+    "file_type":"Dosya Türü",
+    "file_not_supported":"The file you selected is not supported",
+    "file_update":"Profile Photo Updated"
 }

@@ -25,8 +25,10 @@
     "denied":"Refusé",
     "light":"Mode Lumineux",
     "dark":"Mode Sombre",
-    "news":"Nouvelles"
-
+    "news":"Nouvelles",
+    "file_type":"Type de fichier",
+    "file_not_supported":"Le fichier que vous avez sélectionné n'est pas pris en charge",
+    "file_update":"Photo de profil mise à jour"
 
 
 }

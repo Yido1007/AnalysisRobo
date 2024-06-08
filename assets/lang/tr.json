@@ -25,5 +25,8 @@
     "denied":"Reddedildi",
     "light":"Gündüz Mod",
     "dark":"Karanlık Mod",
-    "news":"Haberler"
+    "news":"Haberler",
+    "file_type":"Dosya Türü",
+    "file_not_supported":"Seçtiğiniz dosya desteklenmiyor",
+    "file_update":"Profil Fotoğrafı Güncellendi"
 }

@@ -24,6 +24,9 @@
     "temporary":"Temporaneo",
     "denied":"Negato",
     "dark":"Modalità scura",
-    "news":"Notizia"
+    "news":"Notizia",
+    "file_type":"Tipo di file",
+    "file_not_supported":"Il file selezionato non è supportato",
+    "file_update":"Foto del profilo aggiornata"
 
 }

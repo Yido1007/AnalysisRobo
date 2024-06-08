@@ -20,17 +20,17 @@ class ProfileScreenState extends State<ProfileScreen> {
   late ClientCubit clientCubit;
 
   File? dosya;
-  String boyutlar = "";
+  String size = "";
   File? cacheDosyasi;
 
   @override
   void initState() {
     super.initState();
     clientCubit = context.read<ClientCubit>();
-    profiliVarsaYukle();
+    updateProfile();
   }
 
-  Future<void> profiliVarsaYukle() async {
+  Future<void> updateProfile() async {
     try {
       final Directory appCacheDir = await getTemporaryDirectory();
       File f = File("${appCacheDir.path}/avatar.jpg");
@@ -44,29 +44,29 @@ class ProfileScreenState extends State<ProfileScreen> {
         print("Dosya Bulunmadı");
       }
     } catch (e) {
-      print("Error in profiliVarsaYukle: $e");
+      print("Error in updateProfile: $e");
     }
   }
 
   Future<void> profilePhotoUptade() async {
     try {
       ImagePicker picker = ImagePicker();
-      XFile? secilenDosya = await picker.pickImage(
+      XFile? selectedFile = await picker.pickImage(
         source: ImageSource.gallery,
         requestFullMetadata: false,
       );
 
-      if (secilenDosya == null) {
+      if (selectedFile == null) {
         setState(() {
           dosya = null;
         });
         return;
       }
 
-      var dosyaFormati = secilenDosya.name.split(".").last.toLowerCase();
-      bool kucutebilirmiyim = ["jpg", "jpeg", "bmp", "tiff", "ico", "gif", "png"].contains(dosyaFormati);
+      var dosyaFormati = selectedFile.name.split(".").last.toLowerCase();
+      bool reduce = ["jpg", "jpeg", "bmp", "tiff", "ico", "gif", "png"].contains(dosyaFormati);
 
-      if (!kucutebilirmiyim) {
+      if (!reduce) {
         showDialog(
           context: context,
           builder: (context) => const AlertDialog(
@@ -78,7 +78,7 @@ class ProfileScreenState extends State<ProfileScreen> {
       }
 
       img.Image? temp;
-      final bytes = await File(secilenDosya.path).readAsBytes();
+      final bytes = await File(selectedFile.path).readAsBytes();
       switch (dosyaFormati) {
         case "jpg":
         case "jpeg":
@@ -125,7 +125,7 @@ class ProfileScreenState extends State<ProfileScreen> {
       setState(() {
         dosya = yeniFile;
         cacheDosyasi = yeniFile;
-        boyutlar = "${temp!.width}x${temp.height}";
+        size = "${temp!.width}x${temp.height}";
       });
     } catch (e) {
       print("Error in profilePhotoUptade: $e");
@@ -167,7 +167,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                 Column(
                   children: [
                     Text("File Size: ${dosya!.lengthSync() / 1000} KB"),
-                    Text("Boyutlar: $boyutlar"),
+                    Text("size: $size"),
                     CircleAvatar(
                       radius: 64,
                       backgroundImage: FileImage(dosya!),

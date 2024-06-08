@@ -25,6 +25,9 @@
     "denied":"Denegado",
     "light":"Modo Diurno",
     "dark":"Modo Oscuro",
-    "news":"Noticias"
+    "news":"Noticias",
+    "file_type":"Tipo de archivo",
+    "file_not_supported":"El archivo que seleccionó no es compatible",
+    "file_update":"Foto de perfil actualizada"
 
 }

@@ -25,5 +25,8 @@
     "denied":"Bestritten",
     "light":"Tagmodus",
     "dark":"Dunkelmodus",
-    "news":"Nachricht"
+    "news":"Nachricht",
+    "file_type":"Dateityp",
+    "file_not_supported":"Die von Ihnen ausgewählte Datei wird nicht unterstützt",
+    "file_update":"Profilfoto aktualisiert"
 }
