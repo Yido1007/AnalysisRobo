@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:analysisrobo/core/localizations.dart';
+import '../../core/localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
 import '../../bloc/client/client_cubit.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
