@@ -1,6 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import '../../core/localizations.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});
@@ -47,7 +50,9 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text(AppLocalizations.of(context).getTranslate("news")),
+        ),
         body: isLoading
             ? const Center(child: CircularProgressIndicator())
             : ListView.builder(
@@ -57,12 +62,10 @@ class _NewsScreenState extends State<NewsScreen> {
                   return ListTile(
                     leading: article.urlToImage.isNotEmpty
                         ? Image.network(article.urlToImage)
-                        : const SizedBox.shrink(), 
+                        : const SizedBox.shrink(),
                     title: Text(article.title),
                     subtitle: Text(article.publishedAt),
-                    onTap: () {
-                      
-                    },
+                    onTap: () {},
                   );
                 },
               ),
