@@ -30,5 +30,11 @@
     "file_not_supported":"Seçtiğiniz dosya desteklenmiyor",
     "file_update":"Profil Fotoğrafı Güncellendi",
     "delete_profile":"Profil Resmini Sil",
-    "update_profile":"Profil Resmini Güncelle"
+    "update_profile":"Profil Resmini Güncelle",
+    "name":"İsim:",
+    "surname":"Soyisim:",
+    "adress":"Adres:",
+    "age":"Yaş:",
+    "job":"İş:",
+    "profile":"Profil"
 }

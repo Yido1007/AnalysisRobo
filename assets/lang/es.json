@@ -30,6 +30,12 @@
     "file_not_supported":"El archivo que seleccionó no es compatible",
     "file_update":"Foto de perfil actualizada",
     "delete_profile":"Eliminar Foto de perfil",
-    "update_profile":"Cambiar Foto de Perfil"
+    "update_profile":"Cambiar Foto de Perfil",
+    "name":"Nombre:",
+    "surname":"Apellido:",
+    "adress":"Dirección:",
+    "age":"Edad:",
+    "job":"Trabajo:",
+    "profile":"Perfil"
 
 }   

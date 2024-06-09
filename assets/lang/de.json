@@ -30,5 +30,11 @@
     "file_not_supported":"Die von Ihnen ausgewählte Datei wird nicht unterstützt",
     "file_update":"Profilfoto aktualisiert",
     "delete_profile":"Profilfoto löschen",
-    "update_profile":"Profilfoto ändern"
+    "update_profile":"Profilfoto ändern",
+    "name":"Name:",
+    "surname":"Nachname:",
+    "adress":"ein Kleid:",
+    "age":"Alter:",
+    "job":"Arbeit:",
+    "profile":"Profil"
 }
