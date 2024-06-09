@@ -33,18 +33,20 @@ class _LanguageScreenState extends State<LanguageScreen> {
         body: SafeArea(
           child: Column(
             children: [
-              // prints the current status
-              // Text(
-              //     "${AppLocalizations.of(context).getTranslate("language")}: ${clientCubit.state.language}"),
               const Gap(25),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   // to use Tr
                   InkWell(
-                    child: Image.asset(
-                      "assets/icons/turkey.png",
-                      width: 80,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/icons/turkey.png",
+                          width: 80,
+                        ),
+                        const Text("Türkçe")
+                      ],
                     ),
                     onTap: () {
                       clientCubit.state.language == "tr"
@@ -58,9 +60,14 @@ class _LanguageScreenState extends State<LanguageScreen> {
                   ),
                   // to use En
                   InkWell(
-                    child: Image.asset(
-                      "assets/icons/england.png",
-                      width: 80,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/icons/england.png",
+                          width: 80,
+                        ),
+                        const Text("English")
+                      ],
                     ),
                     onTap: () {
                       clientCubit.state.language == "en"
@@ -80,9 +87,14 @@ class _LanguageScreenState extends State<LanguageScreen> {
                 children: [
                   // to use Esp
                   InkWell(
-                    child: Image.asset(
-                      "assets/icons/spain.png",
-                      width: 80,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/icons/spain.png",
+                          width: 80,
+                        ),
+                        const Text("Español")
+                      ],
                     ),
                     onTap: () {
                       clientCubit.state.language == "es"
@@ -96,9 +108,14 @@ class _LanguageScreenState extends State<LanguageScreen> {
                   ),
                   // to use Fra
                   InkWell(
-                    child: Image.asset(
-                      "assets/icons/france.png",
-                      width: 80,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/icons/france.png",
+                          width: 80,
+                        ),
+                        const Text("Français")
+                      ],
                     ),
                     onTap: () {
                       clientCubit.state.language == "fr"
@@ -118,9 +135,18 @@ class _LanguageScreenState extends State<LanguageScreen> {
                 children: [
                   // to use De
                   InkWell(
-                    child: Image.asset(
-                      "assets/icons/germany.png",
-                      width: 80,
+                    child: Column(
+                      children: [
+                        Column(
+                          children: [
+                            Image.asset(
+                              "assets/icons/germany.png",
+                              width: 80,
+                            ),
+                          ],
+                        ),
+                        const Text("Deutsch")
+                      ],
                     ),
                     onTap: () {
                       clientCubit.state.language == "de"
@@ -134,9 +160,14 @@ class _LanguageScreenState extends State<LanguageScreen> {
                   ),
                   // to use It
                   InkWell(
-                    child: Image.asset(
-                      "assets/icons/italy.png",
-                      width: 80,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/icons/italy.png",
+                          width: 80,
+                        ),
+                        const Text("Italiano")
+                      ],
                     ),
                     onTap: () {
                       clientCubit.state.language == "it"
