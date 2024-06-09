@@ -1,76 +1,87 @@
-// ignore_for_file: use_build_context_synchronously, sized_box_for_whitespace, prefer_const_constructors, use_key_in_widget_constructors, unnecessary_string_escapes
+// ignore_for_file: use_build_context_synchronously
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:preload_page_view/preload_page_view.dart';
-// import '../../core/localizations.dart';
 import '../../core/storage.dart';
 import '../../widgets/boardingitem.dart';
 
 class BoardingScreen extends StatefulWidget {
-  const BoardingScreen({Key? key});
+  const BoardingScreen({super.key});
 
   @override
   State<BoardingScreen> createState() => _BoardingScreenState();
 }
 
 class _BoardingScreenState extends State<BoardingScreen> {
-  int page = 0;
+  // Boarding Screen image, title and description
+  final boardingData = [
+    {
+      "image": "assets/images/boarding-1.webp",
+      "title": "Choose Product.",
+      "description": "We have a 1k+ Product. Choose Your product from our E-commerce shop.",
+    },
+    {
+      "image": "assets/images/boarding-1.webp",
+      "title": "Buy Product.",
+      "description": "Easily purchase your chosen products with our seamless checkout process.",
+    },
+  ];
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  int page = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: PreloadPageView(
-          preloadPagesCount: 3,
+        child: PreloadPageView.builder(
+          itemCount: boardingData.length,
+          preloadPagesCount: boardingData.length,
           onPageChanged: (value) {
             setState(() {
               page = value;
             });
           },
-          children: const [
-            BoardingItem(
-                image: AssetImage('assets/images/boarding-1.webp'),
-                title: "Title",
-                description: "Description"),
-          ],
+          itemBuilder: (context, index) => BoardingItem(
+            // BoardingItem
+            image: boardingData[index]["image"]!,
+            title: boardingData[index]["title"]!,
+            description: boardingData[index]["description"]!,
+          ),
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 70,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Icon(page == 0 ? CupertinoIcons.circle_filled : CupertinoIcons.circle),
-                  Icon(page == 1 ? CupertinoIcons.circle_filled : CupertinoIcons.circle),
-                  Icon(page == 2 ? CupertinoIcons.circle_filled : CupertinoIcons.circle),
-                  Icon(page == 3 ? CupertinoIcons.circle_filled : CupertinoIcons.circle),
-                  Icon(page == 4 ? CupertinoIcons.circle_filled : CupertinoIcons.circle),
-                ],
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 9.0, horizontal: 26),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              // 3 Dot
+              height: 70,
+              child: Align(
+                alignment: Alignment.center,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: boardingData.length,
+                  itemBuilder: (context, index) => Icon(
+                    page == index ? Icons.circle_outlined : Icons.circle,
+                  ),
+                ),
               ),
-              InkWell(
-                onTap: () async {
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: OutlinedButton(
+                onPressed: () async {
                   final storage = Storage();
-                  await storage.isFirstLaunch();
+                  await storage.firstLauched();
                   GoRouter.of(context).replace("/home");
                 },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(page == 4 ? "Finish" : "Skip"),
-                ),
-              )
-            ],
-          ),
+                child: Text(page == boardingData.length - 1 ? "Finish" : "Skip"),
+              ),
+            ),
+          ],
         ),
       ),
     );

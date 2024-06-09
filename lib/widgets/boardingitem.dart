@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class BoardingItem extends StatelessWidget {
-  final AssetImage image;
+  final String image;
   final String title;
   final String description;
-
   const BoardingItem({
     super.key,
     required this.image,
@@ -17,23 +16,23 @@ class BoardingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox.expand(
       child: Padding(
-        padding: const EdgeInsets.all(28.0),
+        padding: const EdgeInsets.all(25.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image(image: image),
+            Image.asset(image),
             Column(
               children: [
-                const Gap(20),
                 Text(
                   title,
                   style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
-                const Gap(20),
-                Text(description),
-                const Gap(20),
+                const Gap(5),
+                Text(
+                  description,
+                ),
               ],
-            ),
+            )
           ],
         ),
       ),
