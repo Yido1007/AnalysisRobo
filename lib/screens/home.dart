@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Investment Robo'),
+          title: const Text('Analysis Robo'),
           centerTitle: true,
         ),
         body: SafeArea(child: widget.child),

@@ -45,7 +45,10 @@ class _LanguageScreenState extends State<LanguageScreen> {
                           "assets/icons/turkey.png",
                           width: 80,
                         ),
-                        const Text("Türkçe")
+                        const Text(
+                          "Türkçe",
+                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                        )
                       ],
                     ),
                     onTap: () {
@@ -66,7 +69,10 @@ class _LanguageScreenState extends State<LanguageScreen> {
                           "assets/icons/england.png",
                           width: 80,
                         ),
-                        const Text("English")
+                        const Text(
+                          "English",
+                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                        )
                       ],
                     ),
                     onTap: () {
@@ -93,7 +99,10 @@ class _LanguageScreenState extends State<LanguageScreen> {
                           "assets/icons/spain.png",
                           width: 80,
                         ),
-                        const Text("Español")
+                        const Text(
+                          "Español",
+                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                        )
                       ],
                     ),
                     onTap: () {
@@ -114,7 +123,10 @@ class _LanguageScreenState extends State<LanguageScreen> {
                           "assets/icons/france.png",
                           width: 80,
                         ),
-                        const Text("Français")
+                        const Text(
+                          "Français",
+                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                        )
                       ],
                     ),
                     onTap: () {
@@ -145,7 +157,10 @@ class _LanguageScreenState extends State<LanguageScreen> {
                             ),
                           ],
                         ),
-                        const Text("Deutsch")
+                        const Text(
+                          "Deutsch",
+                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                        )
                       ],
                     ),
                     onTap: () {
@@ -166,7 +181,10 @@ class _LanguageScreenState extends State<LanguageScreen> {
                           "assets/icons/italy.png",
                           width: 80,
                         ),
-                        const Text("Italiano")
+                        const Text(
+                          "Italiano",
+                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                        )
                       ],
                     ),
                     onTap: () {
