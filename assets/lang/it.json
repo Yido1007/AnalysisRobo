@@ -27,6 +27,8 @@
     "news":"Notizia",
     "file_type":"Tipo di file",
     "file_not_supported":"Il file selezionato non è supportato",
-    "file_update":"Foto del profilo aggiornata"
+    "file_update":"Foto del profilo aggiornata",
+    "delete_profile":"Elimina la Foto Del Profilo",
+    "update_profile":"Cambiare Foto Del Profilo"
 
 }

@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import '../../core/localizations.dart';
+import '../../model/news.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});
@@ -70,22 +71,6 @@ class _NewsScreenState extends State<NewsScreen> {
                 },
               ),
       ),
-    );
-  }
-}
-
-class Article {
-  final String title;
-  final String publishedAt;
-  final String urlToImage;
-
-  Article({required this.title, required this.publishedAt, required this.urlToImage});
-
-  factory Article.fromJson(Map<String, dynamic> json) {
-    return Article(
-      title: json['title'],
-      publishedAt: json['publishedAt'],
-      urlToImage: json['urlToImage'] ?? '',
     );
   }
 }

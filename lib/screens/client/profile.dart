@@ -234,14 +234,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onPressed: () async {
                 await profilePhotoUpdate();
               },
-              child: Text(AppLocalizations.of(context).getTranslate("change_profile_photo")),
+              child: Text(AppLocalizations.of(context).getTranslate("update_profile")),
             ),
             const Gap(10),
-            IconButton(
-              icon: const Icon(Icons.delete, color: Colors.red),
-              onPressed: () async {
-                deleteProfilePhoto();
-              },
+            Tooltip(
+              message: AppLocalizations.of(context).getTranslate("delete_profile"),
+              child: IconButton(
+                icon: const Icon(Icons.delete, color: Colors.red),
+                onPressed: () async {
+                  deleteProfilePhoto();
+                },
+              ),
             ),
           ],
         ),

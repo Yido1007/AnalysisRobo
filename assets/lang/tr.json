@@ -28,5 +28,7 @@
     "news":"Haberler",
     "file_type":"Dosya Türü",
     "file_not_supported":"Seçtiğiniz dosya desteklenmiyor",
-    "file_update":"Profil Fotoğrafı Güncellendi"
+    "file_update":"Profil Fotoğrafı Güncellendi",
+    "delete_profile":"Profil Resmini Sil",
+    "update_profile":"Profil Resmini Güncelle"
 }
