@@ -1,183 +1,251 @@
+// ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously, avoid_print, sized_box_for_whitespace
+
 import 'dart:io';
-import '../../core/localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
-import '../../bloc/client/client_cubit.dart';
-
+import '../../core/localizations.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => ProfileScreenState();
+  _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class ProfileScreenState extends State<ProfileScreen> {
-  late ClientCubit clientCubit;
-
-  File? dosya;
+class _ProfileScreenState extends State<ProfileScreen> {
+  File? file;
+  File? coverPhoto;
   String size = "";
-  File? cacheDosyasi;
+  MemoryImage? currentAvatar;
+  String? currentCoverPhoto;
+
+  profileIfYouLoad() async {
+    final Directory appCacheDir = await getApplicationCacheDirectory();
+    final avatarDir = Directory("${appCacheDir.path}/avatar");
+    if (avatarDir.existsSync()) {
+      final files = avatarDir.listSync();
+      if (files.isNotEmpty) {
+        File f = File(files.first.path);
+        var bytes = f.readAsBytesSync();
+        setState(() {
+          currentAvatar = MemoryImage(bytes);
+        });
+      }
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    clientCubit = context.read<ClientCubit>();
-    updateProfile();
+    profileIfYouLoad();
   }
 
-  Future<void> updateProfile() async {
-    try {
-      final Directory appCacheDir = await getTemporaryDirectory();
-      File f = File("${appCacheDir.path}/avatar.jpg");
-
-      if (f.existsSync()) {
-        print("Dosya Bulundu");
-        setState(() {
-          cacheDosyasi = f;
-        });
-      } else {
-        print("Dosya Bulunmadı");
-      }
-    } catch (e) {
-      print("Error in updateProfile: $e");
-    }
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(appBar: AppBar(), body: profileMenu(context)),
+    );
   }
 
-  Future<void> profilePhotoUptade() async {
+  Future<void> profilePhotoUpdate() async {
     try {
       ImagePicker picker = ImagePicker();
       XFile? selectedFile = await picker.pickImage(
         source: ImageSource.gallery,
-        requestFullMetadata: false,
       );
 
       if (selectedFile == null) {
         setState(() {
-          dosya = null;
+          file = null;
         });
         return;
       }
 
-      var dosyaFormati = selectedFile.name.split(".").last.toLowerCase();
-      bool reduce = ["jpg", "jpeg", "bmp", "tiff", "ico", "gif", "png"].contains(dosyaFormati);
+      var fileFormat = selectedFile.name.split(".").last;
 
-      if (!reduce) {
+      bool makeSmall = false;
+
+      switch (fileFormat.toLowerCase()) {
+        case ("jpg"):
+        case ("jpeg"):
+        case ("png"):
+        case ("bmp"):
+        case ("tiff"):
+        case ("ico"):
+        case ("gif"):
+          makeSmall = true;
+      }
+
+      if (!makeSmall) {
         showDialog(
           context: context,
           builder: (context) => const AlertDialog(
-            title: Text("Dosya Boyutu"),
-            content: Text("Seçtiğiniz dosya boyutu çok küçük"),
+            title: Text("Dosya Türü"),
+            content: Text(
+              "Seçtiğiniz dosya, dosya türünü desteklemiyor!!",
+            ),
           ),
         );
         return;
       }
 
       img.Image? temp;
-      final bytes = await File(selectedFile.path).readAsBytes();
-      switch (dosyaFormati) {
-        case "jpg":
-        case "jpeg":
-          temp = img.decodeJpg(bytes);
-          break;
-        case "png":
-          temp = img.decodePng(bytes);
-          break;
-        case "bmp":
-          temp = img.decodeBmp(bytes);
-          break;
-        case "gif":
-          temp = img.decodeGif(bytes);
-          break;
-        case "tiff":
-          temp = img.decodeTiff(bytes);
-          break;
-        case "ico":
-          temp = img.decodeIco(bytes);
-          break;
-      }
-
-      if (temp == null || temp.width < 500 || temp.height < 500) {
+      if (fileFormat.toLowerCase() == "jpg" || fileFormat.toLowerCase() == "jpeg") {
+        temp = img.decodeJpg(File(selectedFile.path).readAsBytesSync());
+      } else if (fileFormat.toLowerCase() == "png") {
+        temp = img.decodePng(File(selectedFile.path).readAsBytesSync());
+      } else if (fileFormat.toLowerCase() == "bmp") {
+        temp = img.decodeBmp(File(selectedFile.path).readAsBytesSync());
+      } else if (fileFormat.toLowerCase() == "tiff") {
+        temp = img.decodeTiff(File(selectedFile.path).readAsBytesSync());
+      } else if (fileFormat.toLowerCase() == "ico") {
+        temp = img.decodeIco(File(selectedFile.path).readAsBytesSync());
+      } else if (fileFormat.toLowerCase() == "gif") {
+        temp = img.decodeGif(File(selectedFile.path).readAsBytesSync());
+      } else {
         showDialog(
           context: context,
           builder: (context) => const AlertDialog(
-            title: Text("Dosya Tipi"),
-            content: Text("Seçtiğiniz dosya desteklenmiyor"),
+            title: Text("Dosya Formati"),
+            content: Text(
+              "Dosya Formati JPG, BMP, GIF, PNG, TIFF olabilir.",
+            ),
           ),
         );
         return;
       }
 
-      img.Image thumbnail = temp.width >= temp.height
-          ? img.copyResize(temp, height: 500)
-          : img.copyResize(temp, width: 500);
+      if (temp!.width < 500 || temp.height < 500) {
+        await showDialog(
+          context: context,
+          builder: (context) => const AlertDialog(
+            title: Text("Dosya Boyutu"),
+            content: Text(
+              "Seçtiğiniz dosya boyutları çok küçük. En az 500px yükseklik ve genişlik gerekmektedir.",
+            ),
+          ),
+        );
+        return;
+      }
 
-      final resizedDosyaVerileri = img.encodeJpg(thumbnail, quality: 85);
-      final Directory tempDir = await getTemporaryDirectory();
-      File yeniFile = File("${tempDir.path}/avatar_temp.jpg");
+      img.Image thumbnail;
+      if (temp.width >= temp.height) {
+        thumbnail = img.copyResize(temp, width: 500);
+      } else {
+        thumbnail = img.copyResize(temp, height: 500);
+      }
 
-      await yeniFile.writeAsBytes(resizedDosyaVerileri, flush: true);
+      final resizedFileData = img.encodeJpg(thumbnail, quality: 85);
+
+      final Directory appCacheDir = await getApplicationCacheDirectory();
+
+      final avatarDir = Directory("${appCacheDir.path}/avatar");
+      if (avatarDir.existsSync()) {
+        final files = avatarDir.listSync();
+        if (files.isNotEmpty) {
+          for (var element in files) {
+            File(element.path).deleteSync();
+          }
+        }
+      } else {
+        avatarDir.createSync();
+      }
+
+      File newFile = File("${appCacheDir.path}/avatar/avatar.${fileFormat.toLowerCase()}");
+      newFile.writeAsBytesSync(resizedFileData);
 
       setState(() {
-        dosya = yeniFile;
-        cacheDosyasi = yeniFile;
+        file = newFile;
+        currentAvatar = MemoryImage(resizedFileData);
         size = "${temp!.width}x${temp.height}";
       });
     } catch (e) {
-      print("Error in profilePhotoUptade: $e");
+      print("Hata Oluştu: $e");
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          AppLocalizations.of(context).getTranslate("account"),
-        ),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-        child: Center(
-          child: Column(
+  void deleteProfilePhoto() async {
+    final Directory appCacheDir = await getApplicationCacheDirectory();
+
+    final avatarDir = Directory("${appCacheDir.path}/avatar");
+    if (avatarDir.existsSync()) {
+      final files = avatarDir.listSync();
+      if (files.isNotEmpty) {
+        for (var element in files) {
+          File(element.path).deleteSync();
+        }
+      }
+    }
+
+    setState(() {
+      file = null;
+      currentAvatar = null;
+      size = ""; // Reset the size variable
+    });
+  }
+
+  Column profileMenu(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: double.infinity,
+          height: 230,
+          child: Stack(
             children: [
-              const Gap(10),
-              if (cacheDosyasi != null)
-                CircleAvatar(
-                  backgroundImage: FileImage(cacheDosyasi!),
-                  maxRadius: 64,
-                )
-              else
-                const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRy5QMODyHm-LaMpgXOqMIUHPbQ-Y51jAZR_UJYC-9Dv1IL3ovh"),
-                  maxRadius: 64,
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
                 ),
-              const Gap(10),
-              OutlinedButton(
-                onPressed: profilePhotoUptade,
-                child: const Text("Profile Photo Update"),
+                child: currentCoverPhoto != null
+                    ? Image.file(
+                        File(currentCoverPhoto!),
+                        width: double.infinity,
+                        height: 300, // Sabit yükseklik
+                        fit: BoxFit.cover,
+                      )
+                    : Container(
+                        // color: Colors.grey, // Arka plan rengi
+                        width: double.infinity,
+                        height: 300, // Sabit yükseklik
+                      ),
               ),
-              const Gap(10),
-              if (dosya != null)
-                Column(
-                  children: [
-                    Text("File Size: ${dosya!.lengthSync() / 1000} KB"),
-                    Text("size: $size"),
-                    CircleAvatar(
-                      radius: 64,
-                      backgroundImage: FileImage(dosya!),
-                    ),
-                  ],
+              Center(
+                child: Positioned(
+                  child: CircleAvatar(
+                    radius: 65,
+                    backgroundImage: currentAvatar,
+                    child: currentAvatar == null
+                        ? const Icon(Icons.person, size: 50, color: Colors.white)
+                        : null,
+                  ),
                 ),
+              ),
             ],
           ),
         ),
-      ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                await profilePhotoUpdate();
+              },
+              child: Text(AppLocalizations.of(context).getTranslate("change_profile_photo")),
+            ),
+            const Gap(10),
+            IconButton(
+              icon: const Icon(Icons.delete, color: Colors.red),
+              onPressed: () async {
+                deleteProfilePhoto();
+              },
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

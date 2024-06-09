@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -52,6 +51,7 @@ class _NewsScreenState extends State<NewsScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(AppLocalizations.of(context).getTranslate("news")),
+          centerTitle: true,
         ),
         body: isLoading
             ? const Center(child: CircularProgressIndicator())

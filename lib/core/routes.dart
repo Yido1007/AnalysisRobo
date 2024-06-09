@@ -49,7 +49,7 @@ final routes = GoRouter(
         GoRoute(
           parentNavigatorKey: _shellNavigatorKey,
           path: '/news',
-          pageBuilder: (context, state) => NoTransitionPage(child: NewsScreen()),
+          pageBuilder: (context, state) => const NoTransitionPage(child: NewsScreen()),
         ),
       ],
     ),
