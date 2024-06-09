@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
 import '../../core/localizations.dart';
+import '../../widgets/profileitem.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -46,7 +47,55 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(appBar: AppBar(), body: profileMenu(context)),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(AppLocalizations.of(context).getTranslate("profile")),
+          centerTitle: true,
+        ),
+        body: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 230,
+              child: Center(
+                child: Positioned(
+                  child: CircleAvatar(
+                    radius: 65,
+                    backgroundImage: currentAvatar,
+                    child: currentAvatar == null
+                        ? const Icon(Icons.person, size: 50, color: Colors.white)
+                        : null,
+                  ),
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Gap(60),
+                ElevatedButton(
+                  onPressed: () async {
+                    await profilePhotoUpdate();
+                  },
+                  child: Text(AppLocalizations.of(context).getTranslate("update_profile")),
+                ),
+                const Gap(15),
+                Tooltip(
+                  message: AppLocalizations.of(context).getTranslate("delete_profile"),
+                  child: IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.red),
+                    onPressed: () async {
+                      deleteProfilePhoto();
+                    },
+                  ),
+                ),
+              ],
+            ),
+            const Gap(20),
+
+          ],
+        ),
+      ),
     );
   }
 
@@ -185,70 +234,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
       currentAvatar = null;
       size = ""; // Reset the size variable
     });
-  }
-
-  Column profileMenu(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          height: 230,
-          child: Stack(
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-                child: currentCoverPhoto != null
-                    ? Image.file(
-                        File(currentCoverPhoto!),
-                        width: double.infinity,
-                        height: 300, // Sabit yükseklik
-                        fit: BoxFit.cover,
-                      )
-                    : Container(
-                        // color: Colors.grey, // Arka plan rengi
-                        width: double.infinity,
-                        height: 300, // Sabit yükseklik
-                      ),
-              ),
-              Center(
-                child: Positioned(
-                  child: CircleAvatar(
-                    radius: 65,
-                    backgroundImage: currentAvatar,
-                    child: currentAvatar == null
-                        ? const Icon(Icons.person, size: 50, color: Colors.white)
-                        : null,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () async {
-                await profilePhotoUpdate();
-              },
-              child: Text(AppLocalizations.of(context).getTranslate("update_profile")),
-            ),
-            const Gap(10),
-            Tooltip(
-              message: AppLocalizations.of(context).getTranslate("delete_profile"),
-              child: IconButton(
-                icon: const Icon(Icons.delete, color: Colors.red),
-                onPressed: () async {
-                  deleteProfilePhoto();
-                },
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
   }
 }

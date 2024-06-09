@@ -30,5 +30,11 @@
     "file_not_supported":"The file you selected is not supported",
     "file_update":"Profile Photo Updated",
     "delete_profile":"Delete Profile Image",
-    "update_profile":"Update Profile Image"
+    "update_profile":"Update Profile Image",
+    "name":"Name:",
+    "surname":"Surname:",
+    "adress":"Address:",
+    "age":"Age:",
+    "job":"Job",
+    "profile":"profile"
 }
