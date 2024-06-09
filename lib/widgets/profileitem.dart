@@ -20,12 +20,12 @@ class ProfileItem extends StatelessWidget {
             children: [
               Text(
                 text1,
-                style: const TextStyle(fontSize: 22),
+                style: const TextStyle(fontSize: 18),
               ),
               const Gap(8),
               Text(
                 text2,
-                style: const TextStyle(fontSize: 22),
+                style: const TextStyle(fontSize: 17),
               ),
             ],
           ),

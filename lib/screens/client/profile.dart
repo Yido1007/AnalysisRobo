@@ -92,7 +92,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
             const Gap(20),
-
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ProfileItem(
+                      text1: AppLocalizations.of(context).getTranslate("name"), text2: "Keyvan"),
+                  const Divider(
+                    thickness: 1,
+                    indent: 90,
+                    endIndent: 90,
+                  ),
+                  ProfileItem(
+                      text1: AppLocalizations.of(context).getTranslate("surname"),
+                      text2: "Arasteh"),
+                  const Divider(
+                    thickness: 1,
+                    indent: 90,
+                    endIndent: 90,
+                  ),
+                  ProfileItem(text1: AppLocalizations.of(context).getTranslate("age"), text2: "32"),
+                  const Divider(
+                    thickness: 1,
+                    indent: 90,
+                    endIndent: 90,
+                  ),
+                  ProfileItem(
+                      text1: AppLocalizations.of(context).getTranslate("job"),
+                      text2: "Mobile App Development and back-end dev"),
+                  const Divider(
+                    thickness: 1,
+                    indent: 90,
+                    endIndent: 90,
+                  ),
+                  ProfileItem(
+                      text1: AppLocalizations.of(context).getTranslate("adress"),
+                      text2: "Maltepe, İstinye Üniversitesi topkapı kampüsü"),
+                  const Divider(
+                    thickness: 1,
+                    indent: 90,
+                    endIndent: 90,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
