@@ -54,7 +54,7 @@ class BottomMenu extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: const Icon(CupertinoIcons.news),
-          label: AppLocalizations.of(context).getTranslate("exchange"),
+          label: AppLocalizations.of(context).getTranslate("news"),
         ),
         // Coins Screen Navigation
         BottomNavigationBarItem(
