@@ -119,7 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   ProfileItem(
                     text1: AppLocalizations.of(context).getTranslate("job"),
-                    text2: "Mobile App Development\nback-end dev",
+                    text2: "Mobile App Dev",
                   ),
                   const Divider(
                     thickness: 1,
@@ -128,7 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   ProfileItem(
                       text1: AppLocalizations.of(context).getTranslate("adress"),
-                      text2: "İstinye Üniversitesi\ntopkapı kampüsü"),
+                      text2: "İstinye Üniversitesi"),
                   const Divider(
                     thickness: 1,
                     indent: 90,
