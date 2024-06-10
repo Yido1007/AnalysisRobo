@@ -34,7 +34,7 @@ class _LoaderScreenState extends State<LoaderScreen> {
     });
 
     final storage = Storage();
-    await storage.clearStorage();
+    // await storage.clearStorage();
     final firstLaunch = await storage.isFirstLaunch();
 
     if (firstLaunch) {
