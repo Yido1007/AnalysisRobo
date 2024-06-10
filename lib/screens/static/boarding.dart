@@ -17,14 +17,22 @@ class _BoardingScreenState extends State<BoardingScreen> {
   // Boarding Screen image, title and description
   final boardingData = [
     {
-      "image": "assets/images/boarding-1.webp",
-      "title": "Choose Product.",
-      "description": "We have a 1k+ Product. Choose Your product from our E-commerce shop.",
+      "image": "assets/images/welcome-boarding.JPG",
+      "title": "Welcome to Crypto World!",
+      "description":
+          "Here is the easiest way to manage your cryptocurrency portfolio. Track your crypto assets with instant price updates, investment strategies and much more. Let's get started !",
     },
     {
-      "image": "assets/images/boarding-1.webp",
-      "title": "Buy Product.",
-      "description": "Easily purchase your chosen products with our seamless checkout process.",
+      "image": "assets/images/notification-boarding.png",
+      "title": "Notification.",
+      "description":
+          "Be aware of market fluctuations instantly. Be the first to be informed about price changes and important developments with special notifications. Customize the settings according to yourself.",
+    }, 
+    {
+      "image": "assets/images/blue-rocket.jpg",
+      "title": "Ready For Start ?",
+      "description":
+          "You're ready now! Track your portfolio, set your notifications and navigate the crypto world with confidence. When you need help, we are always here.",
     },
   ];
 

@@ -28,8 +28,10 @@ class BoardingItem extends StatelessWidget {
                   style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 const Gap(5),
-                Text(
-                  description,
+                Center(
+                  child: Text(
+                    description,
+                  ),
                 ),
               ],
             )
