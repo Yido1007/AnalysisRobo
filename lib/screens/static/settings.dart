@@ -27,7 +27,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return BlocBuilder<ClientCubit, ClientState>(builder: (context, state) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text("Settings"),
+          title: Text(AppLocalizations.of(context).getTranslate("settings")),
           centerTitle: true,
         ),
         body: SafeArea(
